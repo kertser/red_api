@@ -14,7 +14,7 @@ typedef double (*REDFunction)(double, double, double, double, double, uint32_t);
  * 
  * @return nothing.
  */
-void printListOfSupportedSystems();
+void ListOfSupportedSystems(const char*** array, size_t* size);
 
 // RED function for RZ-104-11
 /**

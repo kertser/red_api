@@ -21,14 +21,36 @@ void printLastError() {
 
 int main() {
     // Usage example
-    char systemType[] = "RZ-104-11";
-    double Flow = 100, UVT = 92, P = 100, Eff = 100, D1Log = 18;
-    uint32_t NLamps = 1;
+    char systemType[] = "RZ-300-HDR"; // System Type
+    double Flow = 200, UVT = 92, P = 100, Eff = 100, D1Log = 18; // General settings
+    uint32_t NLamps = 1; // Number of Lamps
 
     HMODULE hDll = LoadLibrary("X:\\CPP projects\\API calculator\\libAPICalculator.dll");
     if (hDll == NULL) {
         fprintf(stderr, "Unable to load DLL\n");
         return 1;
+    }
+
+    // Declare function pointer
+    void (*SupportedSystems)(const char***, size_t*);
+
+    // Get the function pointer
+    SupportedSystems = (void (*)(const char***, size_t*))GetProcAddress(hDll, "ListOfSupportedSystems");
+    if (SupportedSystems == NULL) {
+        fprintf(stderr, "Unable to find function\n");
+        FreeLibrary(hDll);
+        return 1;
+    }
+
+    // Call the function
+    const char** supportedSystemsArray; // This is a pointer to an array of const char*
+    size_t size;
+    SupportedSystems(&supportedSystemsArray, &size); // Pass the address of supportedSystemsArray
+
+    // Print the list of supported systems
+    printf("List of supported systems:\n");
+    for (size_t i = 0; i < size; ++i) {
+        printf("%s\n", supportedSystemsArray[i]);
     }
 
     GetREDFunctionType getREDFunction = (GetREDFunctionType)GetProcAddress(hDll, "getREDFunction");
@@ -46,7 +68,7 @@ int main() {
     }
 
     double result = redFunction(Flow, UVT, P, Eff, D1Log, NLamps);
-    printf("Calculated RED = %f\n", result);
+    printf("Calculated RED for %s = %f\n", systemType, result);
 
     FreeLibrary(hDll);
     return 0;
