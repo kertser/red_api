@@ -7,7 +7,7 @@ project(APICalculator C)
 # Set the C standard for the project
 set(CMAKE_C_STANDARD 11)
 
-set(SOURCE_FILES main.c red_api.c)
+set(SOURCE_FILES main.c red_api.c RZ_104_11.c RZ_104_11.h utils.c utils.h)
 
 # Set the output directory for the DLL
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -18,7 +18,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 # Link directories
 link_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-add_library(red_api red_api.c)
+add_library(red_api red_api.c RZ_104_11 RZ_104_11.c utils utils.c)
 
 # --- enable for dll generation ---
 
