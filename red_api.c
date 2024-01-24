@@ -6,13 +6,13 @@
 #include <stdbool.h>
 #include <RZ_104_11.h>
 
-//Global list of supported systems
+//List of supported systems
 static const char* supportedSystems[] = {
         "RZ-104-11",
         "RZ-300-HDR",
 };
 
-// Coefficients structure for the new-type RED function
+// Coefficients structure for the new-type RED function - will be used later
 struct RED_coefficients
 {
     double alpha,beta,gama;
