@@ -3,7 +3,7 @@
 #ifndef RED_API_H
 #define RED_API_H
 
-#include <stdint.h>
+#include <stdint.h> // for uint32_t
 
 // Function signature type for RED functions
 typedef double (*REDFunction)(double, double, double, double, double, uint32_t);
@@ -30,7 +30,7 @@ const char** ListOfSupportedSystems(size_t* size);
  */
 double RED_RZ_104_11(double Flow, double UVT, double P, double Eff, double D1Log, uint32_t NLamps);
 
-// RED function for SystemType2
+// RED function for RZ-300-HDR
 /**
  * Calculate RED for SystemType2.
  * 
