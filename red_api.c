@@ -3,8 +3,13 @@
 #include "red_api.h"
 #include <math.h>
 #include <string.h>
-#include <stdio.h>
 #include <stdbool.h>
+
+//Global list of supported systems
+static const char* supportedSystems[] = {
+        "RZ-104-11",
+        "RZ-300-HDR",
+};
 
 // Coefficients structure for the new-type RED function
 struct RED_coefficients
@@ -18,16 +23,13 @@ double round_1(double value) {
     return round(value * 10) / 10;
 }
 
-void ListOfSupportedSystems(const char*** array, size_t* size) {
-    static const char* supportedSystems[] = {
-        "RZ-104-11",
-        "RZ-300-HDR"
-    };
-
-    *array = supportedSystems; // Set the pointer to the array
-    *size = sizeof(supportedSystems) / sizeof(supportedSystems[0]); // Set the size
+// Function to return the entire list of systems
+const char** ListOfSupportedSystems(size_t* size) {
+    *size = sizeof(supportedSystems) / sizeof(supportedSystems[0]);
+    return supportedSystems;
 }
 
+// RED for RZ-104-11 (legacy)
 double RED_RZ_104_11(double Flow, double UVT, double P, double Eff, double D1Log, uint32_t NLamps) {
     // Implementation for RZ-104-11
 
@@ -147,7 +149,7 @@ double RED_RZ_104_11(double Flow, double UVT, double P, double Eff, double D1Log
 
 }
 
-
+// RED for RZ-300 (HydraQual algorithm)
 double RED_RZ_300_HDR(double Flow, double UVT, double P, double Eff, double D1Log, uint32_t NLamps) {
     // The function is for HDR validation model
 
@@ -156,8 +158,6 @@ double RED_RZ_300_HDR(double Flow, double UVT, double P, double Eff, double D1Lo
 
     RED = 10a * (P/100)b * (Q)c * (1/Abs)d * * (UVS)e * 10(f/abs) * Ng
     abs = -LOG(UVT/100)
-
-
 
     UVS = D1Log average inactivation
     N = number of lamps
@@ -193,6 +193,7 @@ double RED_RZ_300_HDR(double Flow, double UVT, double P, double Eff, double D1Lo
     
 }
 
+// System function selector
 REDFunction getREDFunction(char *systemType) {
     if (strcmp(systemType, "RZ-104-11") == 0) return RED_RZ_104_11;
     else if (strcmp(systemType, "RZ-300-HDR") == 0) return RED_RZ_300_HDR;

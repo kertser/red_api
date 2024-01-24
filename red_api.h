@@ -10,11 +10,11 @@ typedef double (*REDFunction)(double, double, double, double, double, uint32_t);
 
 // List of supported systems
 /**
- * Printing the list of systems, supported by this API
+ * returning the list of systems, supported by this API
  * 
- * @return nothing.
+ * @return List of UV systems.
  */
-void ListOfSupportedSystems(const char*** array, size_t* size);
+const char** ListOfSupportedSystems(size_t* size);
 
 // RED function for RZ-104-11
 /**
@@ -24,7 +24,7 @@ void ListOfSupportedSystems(const char*** array, size_t* size);
  * @param UVT Ultraviolet transmittance.
  * @param P Power.
  * @param Eff Efficiency.
- * @param D1Log 1-Log inactivaton.
+ * @param D1Log 1-Log inactivation.
  * @param NLamps Number of lamps.
  * @return Calculated RED value.
  */
@@ -38,7 +38,7 @@ double RED_RZ_104_11(double Flow, double UVT, double P, double Eff, double D1Log
  * @param UVT Ultraviolet transmittance.
  * @param P Power.
  * @param Eff Efficiency.
- * @param D1Log 1-Log inactivaton.
+ * @param D1Log 1-Log inactivation.
  * @param NLamps Number of lamps.
  * @return Calculated RED value.
  */
@@ -52,5 +52,13 @@ double RED_RZ_300_HDR(double Flow, double UVT, double P, double Eff, double D1Lo
  * @return Function pointer to the selected RED function.
  */
 REDFunction getREDFunction(char *systemType);
+
+// Function to select the appropriate RED function
+/**
+ * Selects the appropriate RED calculation function based on system type.
+ *
+ * @param systemType The system type identifier.
+ * @return Function pointer to the selected RED function.
+ */
 
 #endif // RED_API_H
