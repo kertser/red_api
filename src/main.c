@@ -12,7 +12,7 @@ int main() {
     uint32_t NLamps = 1; // Number of Lamps
 
     //Change the path accordingly
-    HMODULE hDll = LoadLibrary("..\\cmake-build-debug\\libAPICalculator.dll");
+    HMODULE hDll = LoadLibrary("libred_api.dll");
     if (hDll == NULL) {
         fprintf(stderr, "Unable to load DLL\n");
         return 1;
