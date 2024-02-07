@@ -1,13 +1,11 @@
 //
 // Created by kerts on 2/07/2024.
-// RZ-104-11 RED calculation
+// RZ-300-HDR RED calculation
 //
 
-//#include "RZ_300_HDR.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include "utils.h"
 
 // RED for RZ-300 (HydraQual algorithm)
 double RED_RZ_300_HDR(double Flow, double UVT, double P, double Eff, double D1Log, uint32_t NLamps) {

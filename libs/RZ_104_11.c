@@ -3,7 +3,6 @@
 // RZ-104-11 RED calculation
 //
 
-//#include "RZ_104_11.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdbool.h>

@@ -6,7 +6,6 @@ typedef double (*REDFunction)(double, double, double, double, double, uint32_t);
 typedef REDFunction (*GetREDFunctionType)(char *);
 
 
-
 int main() {
     // Usage example
 
