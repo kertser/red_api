@@ -1,9 +1,7 @@
 // red_api.c
 
 #include "red_api.h"
-#include "RZ_104_11.h"
-#include "RZ_104_12.h"
-#include "RZ_300_HDR.h"
+#include "systems_header.h"
 #include <string.h>
 #include "utils.h"
 
