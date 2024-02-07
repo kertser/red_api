@@ -5,8 +5,11 @@
 typedef double (*REDFunction)(double, double, double, double, double, uint32_t);
 typedef REDFunction (*GetREDFunctionType)(char *);
 
+
+
 int main() {
     // Usage example
+
     char systemType[] = "RZ-300-HDR"; // System Type
     double Flow = 200, UVT = 92, P = 100, Eff = 100, D1Log = 18; // General settings
     uint32_t NLamps = 1; // Number of Lamps

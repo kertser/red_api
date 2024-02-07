@@ -1,16 +1,9 @@
 // red_api.c
 
 #include "red_api.h"
-#include <math.h>
+#include "RZ_104_11.h"
+#include "RZ_300_HDR.h"
 #include <string.h>
-#include <stdbool.h>
-#include <RZ_104_11.h>
-
-//List of supported systems
-static const char* supportedSystems[] = {
-        "RZ-104-11",
-        "RZ-300-HDR",
-};
 
 // Coefficients structure for the new-type RED function - will be used later
 struct RED_coefficients
@@ -19,10 +12,16 @@ struct RED_coefficients
     double A,B,C;
 };
 
+char** loadSupportedSystems(const char* filename, int* count);
+
 // Function to return the entire list of systems
 const char** ListOfSupportedSystems(size_t* size) {
-    *size = sizeof(supportedSystems) / sizeof(supportedSystems[0]);
-    return supportedSystems;
+    int count = 0;
+
+    char** supportedSystems = loadSupportedSystems(SUPPORTED_SYSTEMS_PATH, &count);
+
+    *size = count; // Set the size for the caller
+    return (const char **) supportedSystems; // Cast to const char** when returning
 }
 
 // System function selector

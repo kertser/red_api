@@ -19,6 +19,12 @@ add_library(${API_NAME} SHARED ${LIB_SOURCES})
 set_target_properties(${API_NAME} PROPERTIES VERSION 1.0 SOVERSION 1)
 target_link_libraries(APICalculator ${API_NAME})
 
+# Adjust the absolute path to supported_systems.txt
+set(SUPPORTED_SYSTEMS_PATH "${CMAKE_SOURCE_DIR}/../src/supported_systems.txt")
+
+# Pass the path to the C compiler as a definition
+add_definitions(-DSUPPORTED_SYSTEMS_PATH="${SUPPORTED_SYSTEMS_PATH}")
+
 # Optional: Installation paths
 install(TARGETS APICalculator DESTINATION bin)
 install(TARGETS ${API_NAME} DESTINATION lib)

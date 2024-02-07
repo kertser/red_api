@@ -15,4 +15,13 @@
  */
 double round_1(double value);
 
+// Helper function to dynamically load the list of supported systems
+/**
+ *
+ * @param filename
+ * @param count
+ * @return supportedSystems
+ */
+char** loadSupportedSystems(const char* filename, int* count);
+
 #endif //APICALCULATOR_UTILS_H
