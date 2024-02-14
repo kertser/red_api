@@ -10,9 +10,9 @@ int main() {
     // Usage example
 
     //char systemType[] = "RZ-300-HDR"; // System Type
-    char systemType[] = "RZ-104-11"; // System Type
+    char systemType[] = "RZ-163-13"; // System Type
     double Flow = 100, UVT = 92, P = 100, Eff = 100, D1Log = 18; // General settings
-    uint32_t NLamps = 1; // Number of Lamps
+    uint32_t NLamps = 3; // Number of Lamps
 
     //Change the path accordingly
     HMODULE hDll = LoadLibrary("libred_api.dll");
@@ -33,9 +33,11 @@ int main() {
     // Print the list of supported systems
     size_t size;
     const char** systems = getSupportedSystemsPtr(&size);
+    printf("Supported systems:\n");
     for (size_t i = 0; i < size; ++i) {
         printf("%s\n", systems[i]);
     }
+    printf("------------------\n");
 
     // Declare and get the function pointer
     GetREDFunctionType getREDFunction = (GetREDFunctionType)GetProcAddress(hDll, "getREDFunction");
