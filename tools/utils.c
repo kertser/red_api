@@ -63,3 +63,15 @@ char** loadSupportedSystems(const char* filename, int* count) {
     fclose(file);
     return supportedSystems;
 }
+
+// Function to return an index of the array
+int findIndex(double arr[], int size, double value) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == value) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Function to check if a system is supported

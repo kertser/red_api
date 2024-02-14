@@ -60,10 +60,6 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P, doubl
     const double ML = -1.9015E+01;
     const double NL = 5.1284E-01;
 
-    const double BRED_fixed = 1.2428; //Fixed BRED for any UVT - for 3-log?
-    const double STDEV = 6.2103; // standard deviation for the calculated
-    const double tVal = 1.9771; // t-value for the calculated
-
     const double LampPower = 3000; //[W]
     const double minFlow = 10; //m3h
     const double maxFlow = 3000; //m3h
@@ -103,7 +99,50 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P, doubl
 
     return round_1(RED);
 
+}
 
+// VF RED for RZ-163-UHP
+double VF_RED(double RED){
+    // fixed BRED, bias at 3-log, conservative
 
+    const double BRED_fixed = 1.2428; //Fixed BRED for any UVT - for 3-log?
+    const double STDEV = 6.2103; // standard deviation for the calculated
+    const double tVal = 1.9771; // t-value for the calculated
 
+    double UIN=STDEV*tVal/(RED);
+
+    //VF=(RED)/((1+UIN)*BRED_fixed)
+    double VF=((1+UIN)*BRED_fixed);
+
+    return round_1(RED/VF);
+}
+
+//VF RED for criptosporidium virus
+double VF_RED_cripto(double RED,double UVT, double LI){
+
+    const double STDEV = 6.2103; // standard deviation for the calculated
+    const double tVal = 1.9771; // t-value for the calculated
+
+    double log_abc[] = {0.5,1,1.5,2,2.5,3,3.5,4}; // Choose the desired LI
+    // required_dose = [1.6,2.5,3.9,5.8,8.5,12,15,22] #Required per LI
+
+    // These are a,b,c constants to calculate the BRED per log-inactivation of target (Criptosporidium)
+    double a[] = {-7.956807,-14.617616,-12.844755,-10.18365,-7.038886,-4.375281,-3.261568,-0.060176};
+    double b[] = {4.896899,7.185111,5.999709,4.46189,2.957013,1.766574,1.277332,0.12976};
+    double c[] = {0.993118,1.031131,1.071125,1.090283,1.083221,1.065181,1.053526,1.019059};
+    double A254 = -log(UVT/100);
+
+    int sizeof_a = sizeof(a)/sizeof(a[0]);
+    int sizeof_b = sizeof(b)/sizeof(b[0]);
+    int sizeof_c = sizeof(c)/sizeof(c[0]);
+
+    double a1 = a[findIndex(a,sizeof_a,LI)];
+    double b1 = b[findIndex(b, sizeof_b, LI)];
+    double c1 = c[findIndex(c, sizeof_c, LI)];
+
+    double UIN = STDEV * tVal/(RED);
+    double BRED = a1*pow(A254,2)+b1*A254+c1;
+
+    double VF=((1+UIN)*BRED);
+    return round_1(RED/VF); // Return the credited dose after the validation factor
 }

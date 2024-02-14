@@ -24,4 +24,14 @@ double round_1(double value);
  */
 char** loadSupportedSystems(const char* filename, int* count);
 
+// Helper function to find index of array element
+/**
+ *
+ * @param arr
+ * @param size
+ * @param value
+ * @return index
+ */
+int findIndex(double arr[], int size, double value);
+
 #endif //APICALCULATOR_UTILS_H
