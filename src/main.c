@@ -9,9 +9,9 @@ int main() {
     // Usage example
 
     //char systemType[] = "RZ-300-HDR"; // System Type
-    char systemType[] = "RS-104"; // System Type
-    double Flow = 100, UVT = 95, UVT215 = -1, P = 100, Eff = 100, D1Log = 18; // General settings
-    uint32_t NLamps = 1; // Number of Lamps
+    char systemType[] = "RZB-300"; // System Type
+    double Flow = 150, UVT = 95, UVT215 = -1, P = 100, Eff = 100, D1Log = 18; // General settings
+    uint32_t NLamps = 2; // Number of Lamps
 
     //Change the path accordingly
     HMODULE hDll = LoadLibrary("libred_api.dll");

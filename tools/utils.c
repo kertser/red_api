@@ -74,4 +74,7 @@ int findIndex(double arr[], int size, double value) {
     return -1;
 }
 
-// Function to check if a system is supported
+// Helper function for minimum:
+double min(double a, double b) {
+    return a < b ? a : b;
+}

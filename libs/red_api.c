@@ -33,5 +33,6 @@ REDFunction getREDFunction(char *systemType) {
     else if (strcmp(systemType, "RZ-163UHP-14") == 0) return RED_RZ_163_UHP;
     else if (strcmp(systemType, "RZ-300-HDR") == 0) return RED_RZ_300_HDR;
     else if (strcmp(systemType, "RS-104") == 0) return RED_RS_104;
+    else if (strcmp(systemType, "RZB-300") == 0) return RED_RZB_300;
     else return NULL;
 }

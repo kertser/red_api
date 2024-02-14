@@ -34,4 +34,13 @@ char** loadSupportedSystems(const char* filename, int* count);
  */
 int findIndex(double arr[], int size, double value);
 
+// Helper function min(double a, double b)
+/**
+ *
+ * @param a
+ * @param b
+ * @return min
+ */
+double min(double a, double b);
+
 #endif //APICALCULATOR_UTILS_H
