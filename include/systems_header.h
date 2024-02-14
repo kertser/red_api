@@ -15,5 +15,6 @@
 #include "RZ_163HP_ML.h"
 #include "RZ_163_UHP.h"
 #include "RZ_300_HDR.h"
+#include "RS_104.h"
 
 #endif //APICALCULATOR_SYSTEMS_HEADER_H
