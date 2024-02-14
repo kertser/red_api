@@ -9,7 +9,7 @@
 #include "utils.h"
 
 // RED for RZ-104-11 (legacy)
-double RED_RZ_104_11(double Flow, double UVT, double P, double Eff, double D1Log, uint32_t NLamps) {
+double RED_RZ_104_11(double Flow, double UVT, double UVT215, double P, double Eff, double D1Log, uint32_t NLamps) {
     // Implementation for RZ-104-11
 
     bool legacy = true; // legacy RED function

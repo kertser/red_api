@@ -6,6 +6,6 @@
 #define APICALCULATOR_RZ_300_HDR_H
 
 // RED for RZ-104-11
-double RED_RZ_300_HDR(double Flow, double UVT, double P, double Eff, double D1Log, uint32_t NLamps);
+double RED_RZ_300_HDR(double Flow, double UVT, double UVT215, double P, double Eff, double D1Log, uint32_t NLamps);
 
 #endif //APICALCULATOR_RZ_300_HDR_H

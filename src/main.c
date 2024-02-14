@@ -2,16 +2,15 @@
 #include <windows.h>
 #include <stdint.h>
 
-typedef double (*REDFunction)(double, double, double, double, double, uint32_t);
+typedef double (*REDFunction)(double, double, double, double, double, double, uint32_t); // RED with UVT254 and UVT215
 typedef REDFunction (*GetREDFunctionType)(char *);
-
 
 int main() {
     // Usage example
 
     //char systemType[] = "RZ-300-HDR"; // System Type
-    char systemType[] = "RZ-163HP-12"; // System Type
-    double Flow = 100, UVT = 92, P = 100, Eff = 100, D1Log = 18; // General settings
+    char systemType[] = "RZ-163UHP-12"; // System Type
+    double Flow = 100, UVT = 95, UVT215 = -1, P = 100, Eff = 100, D1Log = 18; // General settings
     uint32_t NLamps = 2; // Number of Lamps
 
     //Change the path accordingly
@@ -56,7 +55,7 @@ int main() {
     }
 
     // Solve for RED, using previously declared parameters
-    double result = redFunction(Flow, UVT, P, Eff, D1Log, NLamps);
+    double result = redFunction(Flow, UVT, UVT215, P, Eff, D1Log, NLamps);
     printf("Calculated RED for %s = %f\n", systemType, result);
 
     FreeLibrary(hDll);

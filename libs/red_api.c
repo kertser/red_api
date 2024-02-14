@@ -5,13 +5,6 @@
 #include <string.h>
 #include "utils.h"
 
-// Coefficients structure for the new-type RED function - will be used later
-struct RED_coefficients
-{
-    double alpha,beta,gama;
-    double A,B,C;
-};
-
 // Function to return the entire list of systems
 const char** ListOfSupportedSystems(size_t* size) {
     int count = 0;
@@ -34,6 +27,10 @@ REDFunction getREDFunction(char *systemType) {
     else if (strcmp(systemType, "RZ-163HP-12") == 0) return RED_RZ_163HP_ML;
     else if (strcmp(systemType, "RZ-163HP-13") == 0) return RED_RZ_163HP_ML;
     else if (strcmp(systemType, "RZ-163HP-14") == 0) return RED_RZ_163HP_ML;
+    else if (strcmp(systemType, "RZ-163UHP-11") == 0) return RED_RZ_163_UHP;
+    else if (strcmp(systemType, "RZ-163UHP-12") == 0) return RED_RZ_163_UHP;
+    else if (strcmp(systemType, "RZ-163UHP-13") == 0) return RED_RZ_163_UHP;
+    else if (strcmp(systemType, "RZ-163UHP-14") == 0) return RED_RZ_163_UHP;
     else if (strcmp(systemType, "RZ-300-HDR") == 0) return RED_RZ_300_HDR;
     else return NULL;
 }

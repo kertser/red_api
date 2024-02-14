@@ -6,7 +6,7 @@
 #include <stdint.h> // for uint32_t
 
 // Function signature type for RED functions
-typedef double (*REDFunction)(double, double, double, double, double, uint32_t);
+typedef double (*REDFunction)(double, double, double, double, double, double, uint32_t);
 
 // List of supported systems
 /**
@@ -15,34 +15,6 @@ typedef double (*REDFunction)(double, double, double, double, double, uint32_t);
  * @return List of UV systems.
  */
 const char** ListOfSupportedSystems(size_t* size);
-
-// RED function for RZ-104-11
-/**
- * Calculate RED for SystemType1.
- * 
- * @param Flow The flow rate.
- * @param UVT Ultraviolet transmittance.
- * @param P Power.
- * @param Eff Efficiency.
- * @param D1Log 1-Log inactivation.
- * @param NLamps Number of lamps.
- * @return Calculated RED value.
- */
-double RED_RZ_104_11(double Flow, double UVT, double P, double Eff, double D1Log, uint32_t NLamps);
-
-// RED function for RZ-300-HDR
-/**
- * Calculate RED for SystemType2.
- * 
- * @param Flow The flow rate.
- * @param UVT Ultraviolet transmittance.
- * @param P Power.
- * @param Eff Efficiency.
- * @param D1Log 1-Log inactivation.
- * @param NLamps Number of lamps.
- * @return Calculated RED value.
- */
-double RED_RZ_300_HDR(double Flow, double UVT, double P, double Eff, double D1Log, uint32_t NLamps);
 
 // Function to select the appropriate RED function
 /**
