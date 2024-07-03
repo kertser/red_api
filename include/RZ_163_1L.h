@@ -6,6 +6,6 @@
 #define APICALCULATOR_RZ_163_1L_H
 
 // RED for RZ-163-1L
-double RED_RZ_163_1L(double Flow, double UVT, double UVT215, double P, double Eff, double D1Log, uint32_t NLamps);
+double RED_RZ_163_1L(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps);
 
 #endif //APICALCULATOR_RZ_163_1L_H

@@ -6,10 +6,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdarg.h> // for variable arguments
+
+#include "utils.h"
 
 // Helper function - rounding to one decimal place
 double round_1(double value) {
     return round(value * 10) / 10;
+}
+
+// Helper function - rounding to precision n
+double round_n(double value, int n) {
+    return round(value * pow(10, n)) / pow(10, n);
 }
 
 // Function to dynamically load the list of supported systems from a file
@@ -77,4 +85,29 @@ int findIndex(double arr[], int size, double value) {
 // Helper function for minimum:
 double min(double a, double b) {
     return a < b ? a : b;
+}
+
+// Function to calculate the average of a variable number of arguments
+double avg(int num, ...) {
+    /*
+     * Example of usage: double average_value = avg(3, 1.0, 2.0, 3.0);
+     */
+
+    va_list args;
+    double sum = 0.0;
+
+    // Initialize the argument list
+    va_start(args, num);
+
+    // Sum all the arguments
+    for (int i = 0; i < num; i++) {
+        sum += va_arg(args, double);
+    }
+
+    // Clean up the argument list
+    va_end(args);
+
+    // Calculate the average
+    if (num == 0) return 0; // Avoid division by zero
+    return sum / num;
 }

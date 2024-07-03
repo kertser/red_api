@@ -9,10 +9,14 @@
 #include "utils.h"
 
 // RED for RS-104
-double RED_RS_104(double Flow, double UVT, double UVT215, double P, double Eff, double D1Log, uint32_t NLamps) {
+double RED_RS_104(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
     // Implementation for RS-104
 
     bool legacy = false; // legacy RED function
+
+    // pull the lamp power and efficiency values from the input arrays
+    double P1 = P[0];
+    double Eff1 = Eff[0];
 
     // General Formula:
     // TUF(Q,UVT,D1Log,ρ)=A*(Q^B)*(D1Log^C)*EXP(D*(UVT/100)))
@@ -44,7 +48,7 @@ double RED_RS_104(double Flow, double UVT, double UVT215, double P, double Eff, 
     NLamps = 1 (single lamp only)
     */
 
-    double AvgDose = Z1*((pow((P*Eff/100),alfa))/(pow(Flow,beta)))*exp(gama*(UVT/100));
+    double AvgDose = Z1*((pow((P1*Eff1/100),alfa))/(pow(Flow,beta)))*exp(gama*(UVT/100));
     double TUF = A1*(pow(Flow,B1))*(pow(D1Log,C1))*exp(D1*(UVT/100));
     if (TUF >1) TUF=1; // TUF<1 always
 

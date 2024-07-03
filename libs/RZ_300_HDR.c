@@ -8,7 +8,7 @@
 #include <stdbool.h>
 
 // RED for RZ-300 (HydraQual algorithm)
-double RED_RZ_300_HDR(double Flow, double UVT, double P, double Eff, double D1Log, uint32_t NLamps) {
+double RED_RZ_300_HDR(double Flow, double UVT, double P[], double Eff[], double D1Log, uint32_t NLamps) {
     // The function is for HDR validation model
 
     /*
@@ -23,6 +23,10 @@ double RED_RZ_300_HDR(double Flow, double UVT, double P, double Eff, double D1Lo
     */
 
     bool legacy = false; // legacy RED function
+
+    // pull the lamp power and efficiency values from the input arrays
+    double P1 = P[0]; // assuming same power for all lamps
+    double Eff1 = Eff[0]; // assuming same efficiency for all lamps
 
     // Dose Coefficents:
     const double a = 1.9723460342;
@@ -42,10 +46,10 @@ double RED_RZ_300_HDR(double Flow, double UVT, double P, double Eff, double D1Lo
 
     double RED;
     if (NLamps>2)
-        RED = pow(10,a) * pow((P / 100 * Eff / 100) , b) * pow((Flow / 0.2271) , c) * pow((1 / (-log10(UVT / 100))) , d) * pow(
+        RED = pow(10,a) * pow((P1 / 100 * Eff1 / 100) , b) * pow((Flow / 0.2271) , c) * pow((1 / (-log10(UVT / 100))) , d) * pow(
                 D1Log , e) * pow(10 , (f / (-log10(UVT / 100)))) * (NLamps / 2 * pow(2 , g));
     else
-        RED = pow(10,a) * pow((P / 100 * Eff / 100) , b) * pow((Flow / 0.2271) , c) * pow((1 / (-log10(UVT / 100))) , d) * pow(
+        RED = pow(10,a) * pow((P1 / 100 * Eff1 / 100) , b) * pow((Flow / 0.2271) , c) * pow((1 / (-log10(UVT / 100))) , d) * pow(
                 D1Log , e) * pow(10 , (f / (-log10(UVT / 100)))) * pow(NLamps , g);
     return RED;
 }

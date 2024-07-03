@@ -17,6 +17,7 @@ const char** ListOfSupportedSystems(size_t* size) {
 
 // System RED function selector
 REDFunction getREDFunction(char *systemType) {
+
     if (strcmp(systemType, "RZ-104-11") == 0) return RED_RZ_104_11;
     else if (strcmp(systemType, "RZ-104-12") == 0) return RED_RZ_104_12;
     else if (strcmp(systemType, "RZ-163-11") == 0) return RED_RZ_163_1L;
@@ -34,5 +35,7 @@ REDFunction getREDFunction(char *systemType) {
     else if (strcmp(systemType, "RZ-300-HDR") == 0) return RED_RZ_300_HDR;
     else if (strcmp(systemType, "RS-104") == 0) return RED_RS_104;
     else if (strcmp(systemType, "RZB-300") == 0) return RED_RZB_300;
+    else if (strcmp(systemType, "RZM-350-8") == 0) return RED_RZM_350_8;
     else return NULL;
+
 }

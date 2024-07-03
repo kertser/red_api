@@ -2,16 +2,24 @@
 #include <windows.h>
 #include <stdint.h>
 
-typedef double (*REDFunction)(double, double, double, double, double, double, uint32_t); // RED with UVT254 and UVT215
+typedef double (*REDFunction)(double, double, double, double[], double[], double, uint32_t); // RED with UVT254 and UVT215
 typedef REDFunction (*GetREDFunctionType)(char *);
 
 int main() {
     // Usage example
 
-    //char systemType[] = "RZ-300-HDR"; // System Type
-    char systemType[] = "RZB-300"; // System Type
-    double Flow = 150, UVT = 95, UVT215 = -1, P = 100, Eff = 100, D1Log = 18; // General settings
-    uint32_t NLamps = 2; // Number of Lamps
+    // declare system type
+    char systemType[] = "RZM-350-8"; // System Type
+
+    // Declare the parameters:
+    #define NLAMPS 8 //has to be static for array definition in C
+    uint32_t NLamps = NLAMPS; // Number of Lamps initialized
+    double Flow = 100; //[m^3/h]
+    double UVT = 95; //[%-1cm]
+    double UVT215 = -1; //[%-1cm] or -1 if NaN
+    double P[NLAMPS] = {100,100,100,100,100,100,100,100}; // [%], defined for every lamp
+    double Eff[NLAMPS] = {80,80,80,80,80,80,80,80}; //[%], defined for every lamp
+    double D1Log = 18; // [mJ/cm^2]
 
     //Change the path accordingly
     HMODULE hDll = LoadLibrary("libred_api.dll");

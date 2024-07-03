@@ -9,7 +9,7 @@
 #include "utils.h"
 
 // RED for RZ-163-UHP (new implementation)
-double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P, double Eff, double D1Log, uint32_t NLamps) {
+double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
     // Implementation for RZ-163-UHP (new implementation)
     // This is an updated version for UHP with fixed UVT254>96[%-1cm]
     // This implementation can take 254nm and 215nm UVT
@@ -28,6 +28,10 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P, doubl
     */
 
     bool legacy = false; // new implementation
+
+    // pull the lamp power and efficiency values from the input arrays
+    double P1 = P[0]; // assuming same power for all lamps
+    double Eff1 = Eff[0]; // assuming same efficiency for all lamps
 
     // General Dose Coefficients
     const double AH = 6.68586909613977;
@@ -77,9 +81,9 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P, doubl
     double RED; // just declaration
 
     if (UVT254 < 96) {
-        double RED_HL=pow(10,AH)*pow(((Eff/100)*(P/100)),(BH+CH*A254+DH*pow(A254,2)))*pow(Flow,(EH+FH*A254+GH*pow(A254,2)))*pow((1/A254),(HH+IH*A254+JH*pow(A254,2)))*
+        double RED_HL=pow(10,AH)*pow(((Eff1/100)*(P1/100)),(BH+CH*A254+DH*pow(A254,2)))*pow(Flow,(EH+FH*A254+GH*pow(A254,2)))*pow((1/A254),(HH+IH*A254+JH*pow(A254,2)))*
                 pow(D1Log,(KH+LH*A254+MH*pow(A254,2)))*pow(NLamps,NH);
-        double RED_LL=pow(10,AL)*pow(((Eff/100)*(P/100)),(BL+CL*A215+DL*pow(A215,2)))*pow(Flow,(EL+FL*A215+GL*pow(A215,2)))*pow((1/A215),(HL+IL*A215+JL*pow(A215,2)))*
+        double RED_LL=pow(10,AL)*pow(((Eff1/100)*(P1/100)),(BL+CL*A215+DL*pow(A215,2)))*pow(Flow,(EL+FL*A215+GL*pow(A215,2)))*pow((1/A215),(HL+IL*A215+JL*pow(A215,2)))*
                 pow(D1Log,(KL+LL*A215+ML*pow(A215,2)))*pow(NLamps,NL);
         RED = RED_HL+RED_LL;
     }
@@ -88,9 +92,9 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P, doubl
         double A254_96 = -log10(96.0/100);
         double A215_96 = -log10(96.0/100);
 
-        double RED_HL96 = pow(10,AH)*pow((Eff/100)*(P/100),(BH+CH*A254_96+DH*pow(A254_96,2)))*pow(Flow,(EH+FH*A254_96+GH*pow(A254_96,2)))*pow((1/A254_96),(HH+IH*A254_96+JH*pow(A254_96,2)))*
+        double RED_HL96 = pow(10,AH)*pow((Eff1/100)*(P1/100),(BH+CH*A254_96+DH*pow(A254_96,2)))*pow(Flow,(EH+FH*A254_96+GH*pow(A254_96,2)))*pow((1/A254_96),(HH+IH*A254_96+JH*pow(A254_96,2)))*
                 pow(D1Log,(KH+LH*A254_96+MH*pow(A254_96,2)))*pow(NLamps,NH);
-        double RED_LL96 = pow(10,AL)*pow((Eff/100)*(P/100),(BL+CL*A215_96+DL*pow(A215_96,2)))*pow(Flow,(EL+FL*A215_96+GL*pow(A215_96,2)))*pow((1/A215_96),(HL+IL*A215_96+JL*pow(A215_96,2)))*
+        double RED_LL96 = pow(10,AL)*pow((Eff1/100)*(P1/100),(BL+CL*A215_96+DL*pow(A215_96,2)))*pow(Flow,(EL+FL*A215_96+GL*pow(A215_96,2)))*pow((1/A215_96),(HL+IL*A215_96+JL*pow(A215_96,2)))*
                 pow(D1Log,(KL+LL*A215_96+ML*pow(A215_96,2)))*pow(NLamps,NL);
 
         double RED96 = (RED_HL96+RED_LL96); // might be rounded to 2 digits

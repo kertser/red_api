@@ -1,6 +1,6 @@
 //
 // Created by kerts on 2/14/2024.
-// RS-104 RED calculation
+// RZB-300 RED calculation
 //
 
 #include <math.h>
@@ -9,10 +9,16 @@
 #include "utils.h"
 
 // RED for RZB-300 Single Module
-double RED_RZB_300(double Flow, double UVT, double UVT215, double P, double Eff, double D1Log, uint32_t NLamps) {
+double RED_RZB_300(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
     // Implementation for a single module of RZB
 
     bool legacy = false; // legacy RED function
+
+    // pull the lamp power and efficiency values from the input arrays
+    double P1 = P[0];
+    double P2 = P[1];
+    double Eff1 = Eff[0];
+    double Eff2 = Eff[1];
 
     // General Formula:
     // Davg(P,Q,UVT)=A*((P^α)/(Q^β))*(1/(LN(100/UVT)))^γ
@@ -57,11 +63,6 @@ double RED_RZB_300(double Flow, double UVT, double UVT215, double P, double Eff,
     NLamps - Number of lamps in total (pay attention, that in single module it is 2)
     */
 
-    //For sake of simplicity, we assume that:
-    double P1 = P;
-    double P2 = P;
-    double Eff1 = Eff;
-    double Eff2 = Eff;
 
     double AvgDose = Z1 * pow((min(P1*Eff1/100,P2*Eff2/100)/100*LampPower*2),alfa2L) / pow(Flow,beta2L) * pow(1/(log(100/UVT)),gama2L);
     double TUF = A1 * pow(Flow,B1) * pow(D1Log,C1) * exp(D1*(UVT/100));

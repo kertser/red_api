@@ -9,8 +9,12 @@
 #include "utils.h"
 
 // RED for RZ-163-1L (legacy)
-double RED_RZ_163_1L(double Flow, double UVT, double UVT215, double P, double Eff, double D1Log, uint32_t NLamps) {
+double RED_RZ_163_1L(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
     // Implementation for RZ-163-1L
+
+    // pull the lamp power and efficiency values from the input arrays
+    double P1 = P[0];
+    double Eff1 = Eff[0];
 
     bool legacy = true; // legacy RED function
 
@@ -60,9 +64,9 @@ double RED_RZ_163_1L(double Flow, double UVT, double UVT215, double P, double Ef
 
     // Preparation towards the calculation:
 
-    double NLF = NL0+NL1*P+NL2*pow(P,2);
-    double Eta_UV = eta_g*eta_coupling*(Eff/100)*NLF;
-    double PQR = (LampPower*(P/100))/Flow;
+    double NLF = NL0+NL1*P1+NL2*pow(P1,2);
+    double Eta_UV = eta_g*eta_coupling*(Eff1/100)*NLF;
+    double PQR = (LampPower*(P1/100))/Flow;
     double L_eff_step = L_eff_coeff_0+L_eff_coeff_1*UVT_step+L_eff_coeff_2*pow(UVT_step,2)
                         +L_eff_coeff_3*pow(UVT_step,3)+L_eff_coeff_4*pow(UVT_step,4);
     double alfa_step =-log(UVT_step/100);
@@ -75,7 +79,7 @@ double RED_RZ_163_1L(double Flow, double UVT, double UVT215, double P, double Ef
     else
         L_eff = (L_eff_scale/alfa);
 
-    NLF = NL0+NL1*P+NL2*pow(P,2);
+    // NLF = NL0+NL1*P+NL2*pow(P,2);
 
     double TAD = (1/Unit_converter_1)*Eta_UV*PQR*L_eff; //[mJ/cm^2]
     double q_step = TUF0+TUF1*UVT_step+TUF2*pow(UVT_step,2);
@@ -119,7 +123,7 @@ double RED_RZ_163_1L(double Flow, double UVT, double UVT215, double P, double Ef
         TUF = TUF_inter;
 
     double RED;
-    if ((UVT < minUVT) | (UVT > maxUVT) | (P < minDrive) | (Flow < minFlow) | (Eff < minLeff))
+    if ((UVT < minUVT) | (UVT > maxUVT) | (P1 < minDrive) | (Flow < minFlow) | (Eff1 < minLeff))
         RED = -1; //'Error' - pay attention to minimum UVT requirements
     else
         RED = TUF*TAD;

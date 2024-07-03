@@ -6,8 +6,8 @@
 #include <stdint.h> // for uint32_t
 
 // Function signature type for RED functions
-// typical for (double Flow, double UVT254, double UVT215, double P, double Eff, double D1Log, uint32_t NLamps);
-typedef double (*REDFunction)(double, double, double, double, double, double, uint32_t);
+// typical for (double Flow, double UVT254, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps);
+typedef double (*REDFunction)(double, double, double, double[], double[], double, uint32_t);
 
 // List of supported systems
 /**

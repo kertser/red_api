@@ -6,14 +6,11 @@
 #ifndef APICALCULATOR_UTILS_H
 #define APICALCULATOR_UTILS_H
 
-// Helper function for math
-/**
- * Calculate floating value rounded to 1.
- *
- * @param value Input
- * @return rounded value.
- */
-double round_1(double value);
+double round_1(double value); // round of a value to 1 digit
+double round_n(double value, int n); // round of a value to n digits
+double max(double a, double b);
+double min(double a, double b); // minimum of 2 value
+double avg(int n, ...); // average of arbitrary number of values (n indicates this number)
 
 // Helper function to dynamically load the list of supported systems
 /**
@@ -22,6 +19,7 @@ double round_1(double value);
  * @param count
  * @return supportedSystems
  */
+
 char** loadSupportedSystems(const char* filename, int* count);
 
 // Helper function to find index of array element
@@ -41,6 +39,5 @@ int findIndex(double arr[], int size, double value);
  * @param b
  * @return min
  */
-double min(double a, double b);
 
 #endif //APICALCULATOR_UTILS_H
