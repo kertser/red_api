@@ -222,14 +222,14 @@ double RED_RZM_350_8(double Flow, double UVT, double UVT215, double P[], double 
     RED = Davg_base*TUF_base;
 
     // Pay attention that the Regular System factor is used in RED calculation. Marine System VF is different.
-    if (NLamps == 8)
-        return round_1(RED * Dose_VF);
-    else if (NLamps == 16) // This is a simplification, but should be valid in this stage
-        return round_1(2*RED * Dose_VF);
+    if (NLamps == 8) return round_1(RED * Dose_VF);
+    else if (NLamps == 16) return round_1(2*RED * Dose_VF); // This is a simplification, but should be valid in this stage
+    else if (NLamps == 5) return round_1(RED * Dose_VF);
+    else if (NLamps == 10) return round_1(2*RED * Dose_VF);
     else return 0;
 }
 
-double HeadLoss(double Flow,uint32_t NLamps) {
+double HeadLoss_RZM350(double Flow,uint32_t NLamps) {
     // Calculate HeadLoss[cmH2O] = HeadLossFactor*C_Flow*Flow^2
 
     // C-flow [bar/(m^3/hour)^2]
@@ -239,7 +239,10 @@ double HeadLoss(double Flow,uint32_t NLamps) {
     double C_Flow2_12 = 0.90015788;
 
     double HeadLossFactor = 0.01; // To match the old calculator
+
     if (NLamps == 8) return round_n(HeadLossFactor*(C_Flow1_11*pow(Flow,2)+C_Flow2_11*Flow)/100,2);
     else if (NLamps == 16) return round_n(HeadLossFactor*2*(C_Flow1_12*pow(Flow,2)+C_Flow2_12*Flow)/100,2);
+    else if (NLamps == 5) return round_n(HeadLossFactor*(C_Flow1_11*pow(Flow,2)+C_Flow2_11*Flow)/100,2);
+    else if (NLamps == 10) return round_n(HeadLossFactor*2*(C_Flow1_12*pow(Flow,2)+C_Flow2_12*Flow)/100,2);
     else return 0;
 }

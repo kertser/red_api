@@ -9,16 +9,16 @@ int main() {
     // Usage example
 
     // declare system type
-    char systemType[] = "RZM-350-8"; // System Type
+    char systemType[] = "RZM-200-5"; // System Type
 
     // Declare the parameters:
-    #define NLAMPS 8 //has to be static for array definition in C
+    #define NLAMPS 5 //has to be static for array definition in C
     uint32_t NLamps = NLAMPS; // Number of Lamps initialized
     double Flow = 100; //[m^3/h]
     double UVT = 95; //[%-1cm]
     double UVT215 = -1; //[%-1cm] or -1 if NaN
-    double P[NLAMPS] = {100,100,100,100,100,100,100,100}; // [%], defined for every lamp
-    double Eff[NLAMPS] = {80,80,80,80,80,80,80,80}; //[%], defined for every lamp
+    double P[NLAMPS] = {100,100,100,100,100}; // [%], defined for every lamp
+    double Eff[NLAMPS] = {80,80,80,80,80}; //[%], defined for every lamp
     double D1Log = 18; // [mJ/cm^2]
 
     //Change the path accordingly
