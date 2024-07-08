@@ -29,7 +29,7 @@ int main() {
         return 1;
     }
 
-    // Initialize the P and Eff values
+    // Initialize the P and Eff values to some set value
     for (uint32_t i = 0; i < NLamps; i++) {
         P[i] = 100; // [%], defined for every lamp
         Eff[i] = 80; //[%], defined for every lamp
