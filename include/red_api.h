@@ -34,4 +34,14 @@ REDFunction getREDFunction(char *systemType);
  * @return Function pointer to the selected RED function.
  */
 
+uint32_t getNLamps(char *systemType);
+
+// Function to return the standard number of lamps
+/**
+ * Selects the appropriate RED calculation function based on system type.
+ *
+ * @param systemType The system type identifier.
+ * @return Number of lamps.
+ */
+
 #endif // RED_API_H
