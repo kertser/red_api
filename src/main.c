@@ -20,6 +20,10 @@ int main() {
     double Flow = 100; //[m^3/h]
     double UVT = 95; //[%-1cm]
     double UVT215 = -1; //[%-1cm] or -1 if NaN
+    double Power = 100; //[%], defined for every lamp
+    double Efficiency = 80; //[%], defined for every lamp
+    double D1Log = 18; // [mJ/cm^2]
+
     double *P = (double *)malloc(NLamps * sizeof(double));
     double *Eff = (double *)malloc(NLamps * sizeof(double));
 
@@ -31,11 +35,9 @@ int main() {
 
     // Initialize the P and Eff values to some set value
     for (uint32_t i = 0; i < NLamps; i++) {
-        P[i] = 100; // [%], defined for every lamp
-        Eff[i] = 80; //[%], defined for every lamp
+        P[i] = Power; // [%], defined for every lamp
+        Eff[i] = Efficiency; //[%], defined for every lamp
     }
-
-    double D1Log = 18; // [mJ/cm^2]
 
     //Change the path accordingly
     HMODULE hDll = LoadLibrary("libred_api.dll");

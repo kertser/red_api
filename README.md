@@ -48,6 +48,48 @@ for (uint32_t i = 0; i < NLamps; i++) {
 double D1Log = 18; // [mJ/cm^2]
 ```
 
+# Example for Java (using the dll):
+```java
+public class RedApi {
+    // Declare the native methods
+    public native int getNLamps(String systemType);
+    public native double calculateRed(
+        String systemType, double flow, double uvt, double uvt215, 
+        double[] power, double[] efficiency, double d1Log, int nLamps
+    );
+
+    static {
+        // Load the DLL
+        System.loadLibrary("libred_api");
+    }
+
+    public static void main(String[] args) {
+        RedApi api = new RedApi();
+        
+        String systemType = "RZM-350-8";
+        double flow = 100; // [m^3/h]
+        double uvt = 95; // [% - 1cm]
+        double uvt215 = -1; // [% - 1cm] or -1 if NaN
+        double power = 100; // [%], defined for every lamp
+        double efficiency = 80; // [%], defined for every lamp
+        double d1Log = 18; // [mJ/cm^2]
+
+        int nLamps = api.getNLamps(systemType);
+        double[] powerArray = new double[nLamps];
+        double[] efficiencyArray = new double[nLamps];
+
+        for (int i = 0; i < nLamps; i++) {
+            powerArray[i] = power;
+            efficiencyArray[i] = efficiency;
+        }
+
+        double result = api.calculateRed(systemType, flow, uvt, uvt215, powerArray, efficiencyArray, d1Log, nLamps);
+        System.out.println("Calculated RED for " + systemType + " = " + result);
+    }
+}
+
+```
+
 ## Methods
 
 ### `ListOfSupportedSystems`
