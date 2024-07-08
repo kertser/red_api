@@ -21,7 +21,8 @@ Here we define the values for
 - Number of lamps.
 <br><sup>(One shall set the NLamps to 0 if he wishes to init the number of lamps automatically)</sup>
 
-# Example:
+# Example for C code 
+<sup>Make sure the libred_api.dll is in the same directory as your executable or in a directory included in your system's library path.</sup>:
 ```c
 // declare system type
 char systemType[] = "RZM-350-8"; // System Type
@@ -49,6 +50,7 @@ double D1Log = 18; // [mJ/cm^2]
 ```
 
 # Example for Java (using the dll):
+<sup>Make sure the libred_api.dll is in the same directory as your Java program or in a directory included in your system's library path.</sup>
 ```java
 public class RedApi {
     // Declare the native methods
