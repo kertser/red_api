@@ -1,21 +1,56 @@
 #include <stdio.h>
-#include <windows.h>
+#include <stdlib.h>
 #include <stdint.h>
-#include "red_api.h"
 
-typedef double (*REDFunction)(double, double, double, double[], double[], double, uint32_t); // RED with UVT254 and UVT215
+#ifdef _WIN32
+    #include <windows.h>
+    #define LIB_HANDLE HMODULE
+    #define LOAD_LIBRARY(name) LoadLibrary(name)
+    #define GET_PROC_ADDRESS GetProcAddress
+    #define FREE_LIBRARY FreeLibrary
+    #define LIB_NAME "red_api.dll"
+#else
+    #include <dlfcn.h>
+    #define LIB_HANDLE void*
+    #define LOAD_LIBRARY(name) dlopen(name, RTLD_LAZY)
+    #define GET_PROC_ADDRESS dlsym
+    #define FREE_LIBRARY dlclose
+    #define LIB_NAME "./libred_api.so"
+#endif
+
+typedef double (*REDFunction)(double, double, double, double[], double[], double, uint32_t);
 typedef REDFunction (*GetREDFunctionType)(char *);
+typedef uint32_t (*GetNLampsType)(const char*);
 
 int main() {
-    // Usage example
-
     // declare system type
     char systemType[] = "RZM-350-8"; // System Type
 
-    // Declare the parameters:
+    // Load the library
+    LIB_HANDLE handle = LOAD_LIBRARY(LIB_NAME);
+    if (!handle) {
+#ifdef _WIN32
+        fprintf(stderr, "Failed to load library. Error code: %lu\n", GetLastError());
+#else
+        fprintf(stderr, "Failed to load library: %s\n", dlerror());
+#endif
+        return 1;
+    }
+
+    // Get getNLamps function
+    GetNLampsType getNLampsFunc = (GetNLampsType)GET_PROC_ADDRESS(handle, "getNLamps");
+    if (!getNLampsFunc) {
+        fprintf(stderr, "Unable to find function getNLamps\n");
+        FREE_LIBRARY(handle);
+        return 1;
+    }
+
+    // Declare the parameters
     uint32_t NLamps = 0; // 0 is for automatic detection
-    // Get the number of lamps from the system type, unless manually set:
-    if (NLamps == 0) NLamps = getNLamps(systemType);
+    // Get the number of lamps from the system type, unless manually set
+    if (NLamps == 0) {
+        NLamps = getNLampsFunc(systemType);
+    }
 
     double Flow = 100; //[m^3/h]
     double UVT = 95; //[%-1cm]
@@ -24,34 +59,31 @@ int main() {
     double Efficiency = 80; //[%], defined for every lamp
     double D1Log = 18; // [mJ/cm^2]
 
+    // Allocate memory
     double *P = (double *)malloc(NLamps * sizeof(double));
     double *Eff = (double *)malloc(NLamps * sizeof(double));
 
     // Check if memory allocation was successful
-    if ((P == NULL) || (Eff == NULL)) {
+    if (P == NULL || Eff == NULL) {
         fprintf(stderr, "Memory allocation failed\n");
+        FREE_LIBRARY(handle);
         return 1;
     }
 
-    // Initialize the P and Eff values to some set value
+    // Initialize the P and Eff values
     for (uint32_t i = 0; i < NLamps; i++) {
-        P[i] = Power; // [%], defined for every lamp
-        Eff[i] = Efficiency; //[%], defined for every lamp
+        P[i] = Power;
+        Eff[i] = Efficiency;
     }
 
-    //Change the path accordingly
-    HMODULE hDll = LoadLibrary("libred_api.dll");
-    if (hDll == NULL) {
-        fprintf(stderr, "Unable to load DLL\n");
-        return 1;
-    }
-
-    // Declare and get the function pointer
-    const char** (*getSupportedSystemsPtr)(size_t* size);
-    getSupportedSystemsPtr = (const char** (*)(size_t*))GetProcAddress(hDll, "ListOfSupportedSystems");
-    if (getSupportedSystemsPtr == NULL) {
+    // Get supported systems function
+    const char** (*getSupportedSystemsPtr)(size_t*);
+    getSupportedSystemsPtr = (const char** (*)(size_t*))GET_PROC_ADDRESS(handle, "ListOfSupportedSystems");
+    if (!getSupportedSystemsPtr) {
         fprintf(stderr, "Unable to find function ListOfSupportedSystems\n");
-        FreeLibrary(hDll);
+        free(P);
+        free(Eff);
+        FREE_LIBRARY(handle);
         return 1;
     }
 
@@ -64,31 +96,33 @@ int main() {
     }
     printf("------------------\n");
 
-    // Declare and get the function pointer
-    GetREDFunctionType getREDFunction = (GetREDFunctionType)GetProcAddress(hDll, "getREDFunction");
-    if (getREDFunction == NULL) {
+    // Get RED function
+    GetREDFunctionType getREDFunction = (GetREDFunctionType)GET_PROC_ADDRESS(handle, "getREDFunction");
+    if (!getREDFunction) {
         fprintf(stderr, "Unable to find function getREDFunction\n");
-        FreeLibrary(hDll);
+        free(P);
+        free(Eff);
+        FREE_LIBRARY(handle);
         return 1;
     }
 
-    // Estimate the RED system type presence
+    // Get RED function for specific system type
     REDFunction redFunction = getREDFunction(systemType);
-    if (redFunction == NULL) {
+    if (!redFunction) {
         fprintf(stderr, "Error: Unknown system type\n");
-        FreeLibrary(hDll);
+        free(P);
+        free(Eff);
+        FREE_LIBRARY(handle);
         return 2;
     }
 
-    // Solve for RED, using previously declared parameters
+    // Calculate RED
     double result = redFunction(Flow, UVT, UVT215, P, Eff, D1Log, NLamps);
     printf("Calculated RED for %s = %.1f\n", systemType, result);
 
-    // Free the dynamically allocated memory
+    // Cleanup
     free(P);
     free(Eff);
-    FreeLibrary(hDll);
+    FREE_LIBRARY(handle);
     return 0;
-
-
 }

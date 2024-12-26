@@ -4,6 +4,17 @@
 #define RED_API_H
 
 #include <stdint.h> // for uint32_t
+#include <stddef.h> // for size_t
+
+#ifdef _WIN32
+    #ifdef API_EXPORTS
+        #define API __declspec(dllexport)
+    #else
+        #define API __declspec(dllimport)
+    #endif
+#else
+    #define API __attribute__((visibility("default")))
+#endif
 
 // Function signature type for RED functions
 // typical for (double Flow, double UVT254, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps);
