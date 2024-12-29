@@ -1,0 +1,424 @@
+{
+  "supported_systems": {
+    "RZ-104-11": {
+      "lamp": {
+        "power": 1045,
+        "count": 1
+      },
+      "operational_limits": {
+        "drive": {
+          "min": 30,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 1,
+          "max": 1000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ-104-12": {
+      "lamp": {
+        "power": 1045,
+        "count": 2
+      },
+      "operational_limits": {
+        "drive": {
+          "min": 30,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 1,
+          "max": 1000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ-163-11": {
+      "lamp": {
+        "power": 2325,
+        "count": 1
+      },
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 4,
+          "max": 2000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ-163-12": {
+      "lamp": {
+        "power": 2325,
+        "count": 2
+      },
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 4,
+          "max": 2000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ-163-13": {
+      "lamp": {
+        "power": 2325,
+        "count": 3
+      },
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 4,
+          "max": 2000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ-163-14": {
+      "lamp": {
+        "power": 2325,
+        "count": 4
+      },
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 4,
+          "max": 2000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ-163HP-11": {
+      "lamp": {
+        "power": 2325,
+        "count": 1
+      },
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 4,
+          "max": 2000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ-163HP-12": {
+      "lamp": {
+        "power": 2325,
+        "count": 2
+      },
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 4,
+          "max": 2000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ-163HP-13": {
+      "lamp": {
+        "power": 2325,
+        "count": 3
+      },
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 4,
+          "max": 2000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ-163HP-14": {
+      "lamp": {
+        "power": 2325,
+        "count": 4
+      },
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 4,
+          "max": 2000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ-163UHP-11": {
+      "lamp": {
+        "power": 3000,
+        "count": 1
+      },
+      "operational_limits": {
+        "flow": {
+          "min": 10,
+          "max": 3000,
+          "unit": "m³/h"
+        }
+      }
+    },
+    "RZ-163UHP-12": {
+      "lamp": {
+        "power": 3000,
+        "count": 2
+      },
+      "operational_limits": {
+        "flow": {
+          "min": 10,
+          "max": 3000,
+          "unit": "m³/h"
+        }
+      }
+    },
+    "RZ-163UHP-13": {
+      "lamp": {
+        "power": 3000,
+        "count": 3
+      },
+      "operational_limits": {
+        "flow": {
+          "min": 10,
+          "max": 3000,
+          "unit": "m³/h"
+        }
+      }
+    },
+    "RZ-163UHP-14": {
+      "lamp": {
+        "power": 3000,
+        "count": 4
+      },
+      "operational_limits": {
+        "flow": {
+          "min": 10,
+          "max": 3000,
+          "unit": "m³/h"
+        }
+      }
+    },
+    "RZ-300-HDR": {
+      "lamp": {
+        "power": null,
+        "count": "variable"
+      }
+    },
+    "RS-104": {
+      "lamp": {
+        "power": 1050,
+        "count": 1
+      },
+      "operational_limits": {
+        "flow": {
+          "min": 10,
+          "max": 500,
+          "unit": "m³/h"
+        }
+      }
+    },
+    "RZB-300": {
+      "lamp": {
+        "power": 4200,
+        "count": 2
+      },
+      "operational_limits": {
+        "flow": {
+          "min": 5,
+          "max": 1000,
+          "unit": "m³/h"
+        }
+      }
+    },
+    "RZM-350-8": {
+      "lamp": {
+        "power": 12000,
+        "count": 8
+      },
+      "operational_limits": {
+        "flow": {
+          "min": 50,
+          "max": 1000,
+          "unit": "m³/h"
+        }
+      }
+    },
+    "RZM-350-5": {
+      "lamp": {
+        "power": 12000,
+        "count": 5
+      },
+      "operational_limits": {
+        "flow": {
+          "min": 50,
+          "max": 1000,
+          "unit": "m³/h"
+        }
+      }
+    },
+    "RZM-200-5": {
+      "lamp": {
+        "power": 6823,
+        "count": 5
+      }
+    },
+    "RZM-200-3": {
+      "lamp": {
+        "power": 6823,
+        "count": 3
+      }
+    },
+    "RZM-200-2": {
+      "lamp": {
+        "power": 6823,
+        "count": 2
+      }
+    },
+    "RZMW-350-11": {
+      "lamp": {
+        "power": 12000,
+        "count": 11
+      }
+    },
+    "RZMW-350-7": {
+      "lamp": {
+        "power": 12000,
+        "count": 7
+      }
+    }
+  }
+}
