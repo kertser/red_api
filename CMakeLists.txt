@@ -67,7 +67,8 @@ endif()
 target_link_libraries(APICalculator ${API_NAME})
 
 # Adjust the absolute path to supported_systems.txt
-set(SUPPORTED_SYSTEMS_PATH "${CMAKE_SOURCE_DIR}/src/supported_systems.txt")
+#set(SUPPORTED_SYSTEMS_PATH "${CMAKE_SOURCE_DIR}/src/supported_systems.txt")
+set(SUPPORTED_SYSTEMS_PATH "supported_systems.txt")
 add_definitions(-DSUPPORTED_SYSTEMS_PATH="${SUPPORTED_SYSTEMS_PATH}")
 
 # Installation paths
