@@ -12,14 +12,28 @@ REM Create directories
 if not exist build mkdir build
 if not exist resources mkdir resources
 
-REM Build using docker-compose
+REM Create a temporary directory for new build
+if not exist resources\temp mkdir resources\temp
+
+REM Build using docker-compose with temporary directory
+set TEMP_RESOURCES=resources\temp
 docker-compose up --build
 
-REM Copy the built files
-docker cp red_api-builder-1:/app/build/lib/libred_api.so ./resources/
-docker cp red_api-builder-1:/app/build/lib/libjson-c.so.5 ./resources/
+REM Move only the needed files to main resources directory
+move /Y resources\temp\libred_api.so.1.0 resources\
+move /Y resources\temp\libred_api.so.1 resources\
+move /Y resources\temp\libjson-c.so.5.3.0 resources\
+move /Y resources\temp\libjson-c.so.5 resources\
 
 REM Clean up
+rmdir /S /Q resources\temp
 docker-compose down
 
-echo Build complete. Libraries are in ./resources/
+echo.
+echo Build complete. Updated Linux shared libraries in ./resources/:
+echo  - libred_api.so.1.0    (Main library)
+echo  - libred_api.so.1      (Symbolic link)
+echo  - libjson-c.so.5.3.0   (Dependency library)
+echo  - libjson-c.so.5       (Symbolic link)
+echo.
+echo Other files in resources directory have been preserved.
