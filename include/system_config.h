@@ -3,7 +3,9 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <stddef.h>  // Added for size_t
 
+// Structure to hold system configuration
 typedef struct {
     uint32_t lamp_count;
     double lamp_power;
@@ -13,6 +15,7 @@ typedef struct {
     double max_uvt;
 } system_config_t;
 
+// Function declarations
 bool init_system_config(const char* json_path);
 void cleanup_system_config(void);
 const char** get_supported_systems(size_t* count);

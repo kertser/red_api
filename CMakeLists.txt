@@ -6,16 +6,6 @@ set(API_NAME "red_api")
 # Enable position independent code
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-# Define paths for configuration files
-set(SYSTEMS_JSON_PATH "${CMAKE_BINARY_DIR}/bin/supported_systems.json")
-
-# Configure paths header
-configure_file(
-        "${CMAKE_SOURCE_DIR}/include/paths_config.h.in"
-        "${CMAKE_BINARY_DIR}/include/paths_config.h"
-        @ONLY
-)
-
 # Add json-c
 include(FetchContent)
 FetchContent_Declare(
@@ -28,9 +18,15 @@ set(BUILD_TESTING OFF CACHE BOOL "")
 FetchContent_MakeAvailable(json-c)
 
 # Define output directories
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+if(WIN32)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+else()
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+endif()
 
 # Include directories
 include_directories(
@@ -54,49 +50,41 @@ target_link_libraries(${API_NAME} PRIVATE json-c)
 
 # Main executable
 add_executable(APICalculator "src/main.c" "tools/utils.c")
-target_link_libraries(APICalculator PRIVATE ${API_NAME} json-c)
 
-# Windows-specific settings
+# Platform specific settings
 if(WIN32)
-    add_definitions(
-            -DWIN32_LEAN_AND_MEAN
-            -D_WIN32_WINNT=0x0601
-            -DAPI_EXPORTS
-    )
+    add_definitions(-DWIN32_LEAN_AND_MEAN -D_WIN32_WINNT=0x0601 -DAPI_EXPORTS)
 
     set_target_properties(${API_NAME} PROPERTIES
             PREFIX ""
             IMPORT_PREFIX ""
             )
-
-    # Copy DLLs and config files to output directory
-    add_custom_command(TARGET APICalculator POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            $<TARGET_FILE:json-c>
-            $<TARGET_FILE:${API_NAME}>
-            ${CMAKE_SOURCE_DIR}/src/supported_systems.json
-            ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
-            )
 else()
     add_definitions(-D_GNU_SOURCE)
-    target_link_libraries(APICalculator dl m)
-    target_link_libraries(${API_NAME} dl m)
 
     set_target_properties(${API_NAME} PROPERTIES
             VERSION 1.0
             SOVERSION 1
             PREFIX "lib"
             )
+
+    # Link with dl and math libraries on Linux
+    target_link_libraries(${API_NAME} PRIVATE dl m)
+    target_link_libraries(APICalculator PRIVATE dl m)
 endif()
+
+# Link the executable with our library and json-c
+target_link_libraries(APICalculator PRIVATE ${API_NAME} json-c)
 
 # Installation
 install(TARGETS APICalculator ${API_NAME} json-c
         RUNTIME DESTINATION bin
-        LIBRARY DESTINATION bin
+        LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
         )
 
+# Install configuration files
 install(FILES
         "${CMAKE_SOURCE_DIR}/src/supported_systems.json"
-        DESTINATION bin
+        DESTINATION share/${PROJECT_NAME}
         )

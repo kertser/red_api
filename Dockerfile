@@ -1,10 +1,10 @@
-# Use Ubuntu as base image
 FROM ubuntu:22.04
 
-# Install build essentials and CMake
+# Install build essentials and dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     cmake \
+    git \
     gcc \
     g++ \
     make \
@@ -13,4 +13,5 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# The source files will be mounted at runtime
+# Create build directory
+RUN mkdir -p build
