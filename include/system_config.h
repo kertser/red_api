@@ -9,10 +9,18 @@
 typedef struct {
     uint32_t lamp_count;
     double lamp_power;
+    // Flow limits
     double min_flow;
     double max_flow;
+    // UVT limits
     double min_uvt;
     double max_uvt;
+    // Drive limits
+    double min_drive;
+    double max_drive;
+    // Efficiency limits
+    double min_efficiency;
+    double max_efficiency;
 } system_config_t;
 
 // Function declarations

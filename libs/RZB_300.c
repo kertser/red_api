@@ -4,9 +4,9 @@
 //
 
 #include <math.h>
-#include <stdint.h>
 #include <stdbool.h>
 #include "utils.h"
+#include "system_config.h"
 
 // RED for RZB-300 Single Module
 double RED_RZB_300(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
@@ -47,9 +47,22 @@ double RED_RZB_300(double Flow, double UVT, double UVT215, double P[], double Ef
     const double C2 = 0.369722425245504;
     const double D2 = 5.91491910054795;
 
-    const double LampPower = 4200; //[W]
-    const double minFlow = 5; //m3h
-    const double maxFlow = 1000; //m3h
+    // Get system configuration
+    system_config_t config;
+    if (!get_system_config("RZB-300", &config)) {
+        return -1; // Return error if configuration cannot be loaded
+    }
+
+    // General Coefficients from configuration
+    const double LampPower = config.lamp_power;
+    const double minFlow = config.min_flow;
+    const double maxFlow = config.max_flow;
+    const double minUVT = config.min_uvt;
+    const double maxUVT = config.max_uvt;
+    const double minDrive = config.min_drive;
+    const double maxDrive = config.max_drive;
+    const double minEff = config.min_efficiency;
+    const double maxEff = config.max_efficiency;
 
     // General Logic:
     /*
@@ -66,6 +79,14 @@ double RED_RZB_300(double Flow, double UVT, double UVT215, double P[], double Ef
 
     double AvgDose = Z1 * pow((min(P1*Eff1/100,P2*Eff2/100)/100*LampPower*2),alfa2L) / pow(Flow,beta2L) * pow(1/(log(100/UVT)),gama2L);
     double TUF = A1 * pow(Flow,B1) * pow(D1Log,C1) * exp(D1*(UVT/100));
+
+    // Validation before calculation
+    if (UVT < minUVT || UVT > maxUVT ||
+        P1 < minDrive || P1 > maxDrive ||
+        Flow < minFlow || Flow > maxFlow ||
+        Eff1 < minEff || Eff1 > maxEff) {
+        return -1; // Return error if parameters are out of range
+    }
 
     return round_1((NLamps/2)*AvgDose*TUF);
 

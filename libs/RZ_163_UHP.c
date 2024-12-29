@@ -4,9 +4,11 @@
 //
 
 #include <math.h>
-#include <stdint.h>
 #include <stdbool.h>
 #include "utils.h"
+#include "system_config.h"
+#include <stdio.h>
+#include <string.h>
 
 // RED for RZ-163-UHP (new implementation)
 double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
@@ -64,9 +66,38 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P[], dou
     const double ML = -1.9015E+01;
     const double NL = 5.1284E-01;
 
-    const double LampPower = 3000; //[W]
-    const double minFlow = 10; //m3h
-    const double maxFlow = 3000; //m3h
+    // Get system configuration
+    char NLampsText[3]; // Buffer for NLampsText (2 characters + null terminator)
+    char system_name[20]; // Buffer for final concatenated string
+
+    // Determine NLampsText based on NLamps
+    if (NLamps == 2) {
+        strcpy(NLampsText, "12");
+    } else if (NLamps == 3) {
+        strcpy(NLampsText, "13");
+    } else if (NLamps == 4) {
+        strcpy(NLampsText, "14");
+    } else {
+        strcpy(NLampsText, "");
+    }
+    snprintf(system_name, sizeof(system_name), "RZ-163UHP-%s", NLampsText);
+
+    // Get system configuration
+    system_config_t config;
+    if (!get_system_config(system_name, &config)) {
+        return -1; // Return error if configuration cannot be loaded
+    }
+
+    // General Coefficients from configuration
+    const double LampPower = config.lamp_power;
+    const double minFlow = config.min_flow;
+    const double maxFlow = config.max_flow;
+    const double minUVT = config.min_uvt;
+    const double maxUVT = config.max_uvt;
+    const double minDrive = config.min_drive;
+    const double maxDrive = config.max_drive;
+    const double minEff = config.min_efficiency;
+    const double maxEff = config.max_efficiency;
 
     // UVT Coefficients for estimated calculation of UVT215 from UVT254:
     const double UVT215_A = 0.2804;
@@ -99,6 +130,14 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P[], dou
 
         double RED96 = (RED_HL96+RED_LL96); // might be rounded to 2 digits
         RED = RED96 * pow(1.3,(UVT254-96));
+    }
+
+    // Validation before calculation
+    if (UVT254 < minUVT || UVT254 > maxUVT ||
+        P1 < minDrive || P1 > maxDrive ||
+        Flow < minFlow || Flow > maxFlow ||
+        Eff1 < minEff || Eff1 > maxEff) {
+        return -1; // Return error if parameters are out of range
     }
 
     return round_1(RED);

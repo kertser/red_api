@@ -4,8 +4,8 @@
 //
 
 #include <math.h>
-#include <stdint.h>
 #include <stdbool.h>
+#include "system_config.h"
 
 // RED for RZ-300 (HydraQual algorithm)
 double RED_RZ_300_HDR(double Flow, double UVT, double P[], double Eff[], double D1Log, uint32_t NLamps) {
@@ -22,7 +22,13 @@ double RED_RZ_300_HDR(double Flow, double UVT, double P[], double Eff[], double 
     Flow units - [m3/h]
     */
 
-    bool legacy = false; // legacy RED function
+    bool legacy = false; // legacy RED function indicator
+
+    // Get system configuration
+    system_config_t config;
+    if (!get_system_config("RZ-300-HDR", &config)) {
+        return -1; // Return error if configuration cannot be loaded
+    }
 
     // pull the lamp power and efficiency values from the input arrays
     double P1 = P[0]; // assuming same power for all lamps
@@ -40,9 +46,24 @@ double RED_RZ_300_HDR(double Flow, double UVT, double P[], double Eff[], double 
     const double VF_A = 1.006642717; // VF calculation
     const double VF_B = 6.181224702; // VF calculation
 
-    const double LampPower = 4200; // [W]
-    const double minFlow = 30; //[m^3h]
-    const double maxFlow = 500; //[m^3h]
+    // General Coefficients from configuration
+    const double LampPower = config.lamp_power;
+    const double minFlow = config.min_flow;
+    const double maxFlow = config.max_flow;
+    const double minUVT = config.min_uvt;
+    const double maxUVT = config.max_uvt;
+    const double minDrive = config.min_drive;
+    const double maxDrive = config.max_drive;
+    const double minEff = config.min_efficiency;
+    const double maxEff = config.max_efficiency;
+
+    // Validation before calculation
+    if (UVT < minUVT || UVT > maxUVT ||
+        P1 < minDrive || P1 > maxDrive ||
+        Flow < minFlow || Flow > maxFlow ||
+        Eff1 < minEff || Eff1 > maxEff) {
+        return -1; // Return error if parameters are out of range
+    }
 
     double RED;
     if (NLamps>2)

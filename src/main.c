@@ -4,12 +4,12 @@
 #include "system_config.h"
 
 #ifdef _WIN32
-#include <windows.h>
-#define LIB_HANDLE HMODULE
-#define LOAD_LIBRARY(name) LoadLibrary(name)
-#define GET_PROC_ADDRESS GetProcAddress
-#define FREE_LIBRARY FreeLibrary
-#define LIB_NAME "red_api.dll"
+    #include <windows.h>
+    #define LIB_HANDLE HMODULE
+    #define LOAD_LIBRARY(name) LoadLibrary(name)
+    #define GET_PROC_ADDRESS GetProcAddress
+    #define FREE_LIBRARY FreeLibrary
+    #define LIB_NAME "red_api.dll"
 #else
 #include <dlfcn.h>
     #define LIB_HANDLE void*
@@ -56,7 +56,7 @@ int main() {
     }
 
     // Get system configuration
-    const char *systemType = "RZM-350-8";
+    const char *systemType = "RZMW-350-11";
     system_config_t config;
     if (!get_system_config(systemType, &config)) {
         fprintf(stderr, "Failed to get configuration for system %s\n", systemType);

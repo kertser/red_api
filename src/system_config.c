@@ -70,6 +70,9 @@ bool get_system_config(const char* system_type, system_config_t* config) {
         return false;
     }
 
+    // Initialize config with default values
+    memset(config, 0, sizeof(system_config_t));
+
     struct json_object* supported_systems_obj;
     if (!json_object_object_get_ex(systems_json, "supported_systems", &supported_systems_obj)) {
         return false;
@@ -98,8 +101,6 @@ bool get_system_config(const char* system_type, system_config_t* config) {
         if (json_object_object_get_ex(lamp_obj, "power", &temp)) {
             if (!json_object_is_type(temp, json_type_null)) {
                 config->lamp_power = json_object_get_double(temp);
-            } else {
-                config->lamp_power = 0.0; // default value for null
             }
         }
     }
@@ -133,6 +134,30 @@ bool get_system_config(const char* system_type, system_config_t* config) {
             // Default UVT limits if not specified
             config->min_uvt = 75.0;
             config->max_uvt = 98.0;
+        }
+
+        // Get drive limits
+        struct json_object* drive_obj;
+        if (json_object_object_get_ex(op_limits_obj, "drive", &drive_obj)) {
+            struct json_object* temp;
+            if (json_object_object_get_ex(drive_obj, "min", &temp)) {
+                config->min_drive = json_object_get_double(temp);
+            }
+            if (json_object_object_get_ex(drive_obj, "max", &temp)) {
+                config->max_drive = json_object_get_double(temp);
+            }
+        }
+
+        // Get efficiency limits
+        struct json_object* efficiency_obj;
+        if (json_object_object_get_ex(op_limits_obj, "efficiency", &efficiency_obj)) {
+            struct json_object* temp;
+            if (json_object_object_get_ex(efficiency_obj, "min", &temp)) {
+                config->min_efficiency = json_object_get_double(temp);
+            }
+            if (json_object_object_get_ex(efficiency_obj, "max", &temp)) {
+                config->max_efficiency = json_object_get_double(temp);
+            }
         }
     }
 
@@ -176,10 +201,28 @@ bool validate_parameters(const char* system_type, double flow, double uvt,
         }
     }
 
-    // Standard power and efficiency validation
-    if (power < 0.0 || power > 100.0 ||
-        efficiency < 0.0 || efficiency > 100.0) {
-        return false;
+    // Check drive limits if they exist
+    if (config.min_drive > 0 && config.max_drive > 0) {
+        if (power < config.min_drive || power > config.max_drive) {
+            return false;
+        }
+    } else {
+        // Standard power validation if no specific limits
+        if (power < 0.0 || power > 100.0) {
+            return false;
+        }
+    }
+
+    // Check efficiency limits if they exist
+    if (config.min_efficiency > 0 && config.max_efficiency > 0) {
+        if (efficiency < config.min_efficiency || efficiency > config.max_efficiency) {
+            return false;
+        }
+    } else {
+        // Standard efficiency validation if no specific limits
+        if (efficiency < 0.0 || efficiency > 100.0) {
+            return false;
+        }
     }
 
     return true;

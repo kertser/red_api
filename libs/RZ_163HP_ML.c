@@ -4,9 +4,9 @@
 //
 
 #include <math.h>
-#include <stdint.h>
 #include <stdbool.h>
 #include "utils.h"
+#include "system_config.h"
 
 // RED for RZ-163HP-ML (legacy)
 double RED_RZ_163HP_ML(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
@@ -18,14 +18,23 @@ double RED_RZ_163HP_ML(double Flow, double UVT, double UVT215, double P[], doubl
     double P1 = P[0]; // assuming same power for all lamps
     double Eff1 = Eff[0]; // assuming same efficiency for all lamps
 
-    // General Coefficients
-    const double LampPower = 2325; //[W] - 110W/cm for 95mm arc-length lamp
-    const double minFlow = 4; //[m3h];
-    const double maxFlow = 2000; //[m3h]
-    const double minUVT = 79.8; //[%-1cm]
-    const double maxUVT = 98; //[%-1cm]
-    const double minDrive = 25; //[%]
-    const double maxDrive = 100; //[%]
+    // Get system configuration
+    system_config_t config;
+    if (!get_system_config("RZ-163HP", &config)) {
+        return -1; // Return error if configuration cannot be loaded
+    }
+
+    // General Coefficients from configuration
+    const double LampPower = config.lamp_power;
+    const double minFlow = config.min_flow;
+    const double maxFlow = config.max_flow;
+    const double minUVT = config.min_uvt;
+    const double maxUVT = config.max_uvt;
+    const double minDrive = config.min_drive;
+    const double maxDrive = config.max_drive;
+    const double minEff = config.min_efficiency;
+    const double maxEff = config.max_efficiency;
+
     const double minLeff = 50; //[%]
     const double maxLeff = 100; //[%]
     const double maxLampSpecificPower = 150; //[W/cm]
@@ -119,6 +128,14 @@ double RED_RZ_163HP_ML(double Flow, double UVT, double UVT215, double P[], doubl
         TUF = TUF_minimum;
     else
         TUF = TUF_inter;
+
+    // Validation before calculation
+    if (UVT < minUVT || UVT > maxUVT ||
+        P1 < minDrive || P1 > maxDrive ||
+        Flow < minFlow || Flow > maxFlow ||
+        Eff1 < minEff || Eff1 > maxEff) {
+        return -1; // Return error if parameters are out of range
+    }
 
     double RED;
     if ((UVT < minUVT) | (UVT > maxUVT) | (P1 < minDrive) | (Flow < minFlow) | (Eff1 < minLeff))

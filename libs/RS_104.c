@@ -4,9 +4,9 @@
 //
 
 #include <math.h>
-#include <stdint.h>
 #include <stdbool.h>
 #include "utils.h"
+#include "system_config.h"
 
 // RED for RS-104
 double RED_RS_104(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
@@ -24,6 +24,23 @@ double RED_RS_104(double Flow, double UVT, double UVT215, double P[], double Eff
 
     // Dose Coefficients:
 
+    // Get system configuration
+    system_config_t config;
+    if (!get_system_config("RS-104", &config)) {
+        return -1; // Return error if configuration cannot be loaded
+    }
+
+    // General Coefficients from configuration
+    const double LampPower = config.lamp_power;
+    const double minFlow = config.min_flow;
+    const double maxFlow = config.max_flow;
+    const double minUVT = config.min_uvt;
+    const double maxUVT = config.max_uvt;
+    const double minDrive = config.min_drive;
+    const double maxDrive = config.max_drive;
+    const double minEff = config.min_efficiency;
+    const double maxEff = config.max_efficiency;
+
     const double Z1 = 0.00013676525437778;
     const double alfa = 1.82647844522826;
     const double beta  = 1;
@@ -33,10 +50,6 @@ double RED_RS_104(double Flow, double UVT, double UVT215, double P[], double Eff
     const double B1 = 0.0913821393032035;
     const double C1 = 0.0712062582569228;
     const double D1 = 0.777359750748686;
-
-    const double LampPower = 1050; //[W]
-    const double minFlow = 10; //m3h
-    const double maxFlow = 500; //m3h
 
     // Logics:
     /*
@@ -51,6 +64,14 @@ double RED_RS_104(double Flow, double UVT, double UVT215, double P[], double Eff
     double AvgDose = Z1*((pow((P1*Eff1/100),alfa))/(pow(Flow,beta)))*exp(gama*(UVT/100));
     double TUF = A1*(pow(Flow,B1))*(pow(D1Log,C1))*exp(D1*(UVT/100));
     if (TUF >1) TUF=1; // TUF<1 always
+
+    // Validation before calculation
+    if (UVT < minUVT || UVT > maxUVT ||
+        P1 < minDrive || P1 > maxDrive ||
+        Flow < minFlow || Flow > maxFlow ||
+        Eff1 < minEff || Eff1 > maxEff) {
+        return -1; // Return error if parameters are out of range
+    }
 
     return(round_1(AvgDose*TUF));
 

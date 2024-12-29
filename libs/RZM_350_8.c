@@ -4,9 +4,10 @@
 //
 
 #include <math.h>
-#include <stdint.h>
 #include <stdbool.h>
 #include "utils.h"
+#include "system_config.h"
+#include <string.h>
 
 /*
 General Formula:
@@ -74,10 +75,33 @@ double RED_RZM_350_8(double Flow, double UVT, double UVT215, double P[], double 
     double C_Flow2_12 = 0.90015788;
 
     // Dose Coefficients
-    // RZM-11: - Base
-    double LampPower = 12000; //[W]
-    double minFlow = 50; //m3h
-    double maxFlow = 1000; //m3h
+    // Get system configuration
+    char system_name[20]; // Buffer for final concatenated string
+
+    // Determine NLampsText based on NLamps
+    if (NLamps == 8) {
+        strcpy(system_name, "RZM-350-8");
+    } else if (NLamps == 5) {
+        strcpy(system_name, "RZM-350-5");
+    } else {
+        strcpy(system_name, "");
+    }
+
+    system_config_t config;
+    if (!get_system_config(system_name, &config)) {
+        return -1; // Return error if configuration cannot be loaded
+    }
+
+    // General Coefficients from configuration
+    const double LampPower = config.lamp_power;
+    const double minFlow = config.min_flow;
+    const double maxFlow = config.max_flow;
+    const double minUVT = config.min_uvt;
+    const double maxUVT = config.max_uvt;
+    const double minDrive = config.min_drive;
+    const double maxDrive = config.max_drive;
+    const double minEff = config.min_efficiency;
+    const double maxEff = config.max_efficiency;
 
     double Z_base = 0.610173974032547;
     double alfa_base = 1;
@@ -177,8 +201,6 @@ double RED_RZM_350_8(double Flow, double UVT, double UVT215, double P[], double 
     double C6L = C8L;
     double D6L = D8L;
 
-
-
     double Davg_base = Z_base*(pow(((avg(8,P1*Eff1,P2*Eff2,P3*Eff3,P4*Eff4,P5*Eff5,P6*Eff6,P7*Eff7,P8*Eff8)/100)/100*LampPower),alfa_base)/(pow(Flow,beta_base)))*exp(gama_base*UVT/100);
     double TUF_base = A_base*(pow(Flow,B_base))*(pow(D1Log,C_base))*exp(D_base*(UVT/100));
     if (TUF_base > 1) TUF_base = 1; // Prevent the situation, where base Track Uniformity is larger than 1
@@ -220,6 +242,14 @@ double RED_RZM_350_8(double Flow, double UVT, double UVT215, double P[], double 
 
     // alternative code:
     RED = Davg_base*TUF_base;
+
+    // Validation before calculation (In this case we should calculate Pmin/Pmax and Effmin/Effmax first)
+    if (UVT < minUVT || UVT > maxUVT ||
+        P1 < minDrive || P1 > maxDrive ||
+        Flow < minFlow || Flow > maxFlow ||
+        Eff1 < minEff || Eff1 > maxEff) {
+        return -1; // Return error if parameters are out of range
+    }
 
     // Pay attention that the Regular System factor is used in RED calculation. Marine System VF is different.
     if (NLamps == 8) return round_1(RED * Dose_VF);

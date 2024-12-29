@@ -4,7 +4,6 @@
 #include "systems_header.h"
 #include "system_config.h"
 #include <string.h>
-#include <stdlib.h>
 
 // Function to return the entire list of systems
 const char** ListOfSupportedSystems(size_t* size) {

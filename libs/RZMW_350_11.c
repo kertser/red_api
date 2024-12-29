@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "utils.h"
+#include "system_config.h"
+#include <string.h>
 
 // RED for RZMW-350_11 Single Module
 double RED_RZMW_350_11(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
@@ -51,7 +53,35 @@ double RED_RZMW_350_11(double Flow, double UVT, double UVT215, double P[], doubl
 
     double powerDensity = 171.43; // [W/cm]
     double arcLength = 70; //[cm]
-    double LampPower = round_1(powerDensity*arcLength); // [W] 171.43 W/cm on 70cm arc-length
+    //double LampPower = round_1(powerDensity*arcLength); // [W] 171.43 W/cm on 70cm arc-length
+
+    // Get system configuration
+    char system_name[20]; // Buffer for final concatenated string
+
+    // Determine NLampsText based on NLamps
+    if (NLamps == 11) {
+        strcpy(system_name, "RZMW-350-11");
+    } else if (NLamps == 7) {
+        strcpy(system_name, "RZMW-350-7");
+    } else {
+        strcpy(system_name, "");
+    }
+
+    system_config_t config;
+    if (!get_system_config(system_name, &config)) {
+        return -1; // Return error if configuration cannot be loaded
+    }
+
+    // General Coefficients from configuration
+    const double LampPower = config.lamp_power;
+    const double minFlow = config.min_flow;
+    const double maxFlow = config.max_flow;
+    const double minUVT = config.min_uvt;
+    const double maxUVT = config.max_uvt;
+    const double minDrive = config.min_drive;
+    const double maxDrive = config.max_drive;
+    const double minEff = config.min_efficiency;
+    const double maxEff = config.max_efficiency;
 
     double P0 = 0;
     double Eff0 = 0;
@@ -67,6 +97,14 @@ double RED_RZMW_350_11(double Flow, double UVT, double UVT215, double P[], doubl
 
     double Davg = Dose_VF*Z1*pow(((arcLength*powerDensity*NLamps)*(P0/100)*(Eff0/100)),alfa)/pow(Flow,beta)*exp(gama*(UVT/100));
     double TUF = min(A1*pow(Flow,B1)*pow(D1Log,C1)*exp(D1*(UVT/100)),1); // TUF<1 always
+
+    // Validation before calculation
+    if (UVT < minUVT || UVT > maxUVT ||
+        P0 < minDrive || P0 > maxDrive ||
+        Flow < minFlow || Flow > maxFlow ||
+        Eff0 < minEff || Eff0 > maxEff) {
+        return -1; // Return error if parameters are out of range
+    }
 
     return round_1(Davg*TUF*Dose_Correction_Factor);
 }
