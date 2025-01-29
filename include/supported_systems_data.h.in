@@ -1,0 +1,9 @@
+#ifndef SUPPORTED_SYSTEMS_DATA_H
+#define SUPPORTED_SYSTEMS_DATA_H
+
+// This file is auto-generated from supported_systems.json during build
+static const char* SUPPORTED_SYSTEMS_JSON = R"json(
+@SUPPORTED_SYSTEMS_JSON@
+)json";
+
+#endif // SUPPORTED_SYSTEMS_DATA_H

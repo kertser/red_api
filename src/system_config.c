@@ -1,4 +1,5 @@
 #include "system_config.h"
+#include "supported_systems_data.h"
 #include <json.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,13 +9,9 @@ static struct json_object* systems_json = NULL;
 static char** supported_systems = NULL;
 static size_t systems_count = 0;
 
-bool init_system_config(const char* json_path) {
-    // Read and parse JSON file
-    systems_json = json_object_from_file(json_path);
-    if (!systems_json) {
-        fprintf(stderr, "Failed to parse JSON file: %s\n", json_path);
-        return false;
-    }
+bool init_system_config(void) {
+    // Use embedded JSON
+    systems_json = json_tokener_parse(SUPPORTED_SYSTEMS_JSON);
 
     // Get the supported_systems object
     struct json_object* systems_obj;

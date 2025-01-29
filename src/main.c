@@ -38,7 +38,7 @@ int main() {
     int return_code = 0;
 
     // Initialize system configuration
-    if (!init_system_config("supported_systems.json")) {
+    if (!init_system_config()) {
         fprintf(stderr, "Failed to load system configuration\n");
         return 1;
     }

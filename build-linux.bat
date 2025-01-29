@@ -8,22 +8,25 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Create directories
-if not exist build mkdir build
+REM Clean existing build and temp directories
+if exist build rmdir /S /Q build
+if exist resources\temp rmdir /S /Q resources\temp
+
+REM Create fresh directories
+mkdir build
 if not exist resources mkdir resources
+mkdir resources\temp
 
-REM Create a temporary directory for new build
-if not exist resources\temp mkdir resources\temp
+echo Created fresh build environment...
 
-REM Build using docker-compose with temporary directory
-set TEMP_RESOURCES=resources\temp
+REM Build using docker-compose
 docker-compose up --build
 
 REM Move only the needed files to main resources directory
-move /Y resources\temp\libred_api.so.1.0 resources\
-move /Y resources\temp\libred_api.so.1 resources\
-move /Y resources\temp\libjson-c.so.5.3.0 resources\
-move /Y resources\temp\libjson-c.so.5 resources\
+move /Y resources\temp\libred_api.so.1.0 resources\ 2>nul
+move /Y resources\temp\libred_api.so.1 resources\ 2>nul
+move /Y resources\temp\libjson-c.so.5.3.0 resources\ 2>nul
+move /Y resources\temp\libjson-c.so.5 resources\ 2>nul
 
 REM Clean up
 rmdir /S /Q resources\temp

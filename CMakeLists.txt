@@ -6,6 +6,16 @@ set(API_NAME "red_api")
 # Enable position independent code
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+# Read the JSON file content and configure header
+file(READ "${CMAKE_SOURCE_DIR}/src/supported_systems.json" SUPPORTED_SYSTEMS_JSON)
+
+# Configure the header file
+configure_file(
+        "${CMAKE_SOURCE_DIR}/include/supported_systems_data.h.in"
+        "${CMAKE_BINARY_DIR}/include/supported_systems_data.h"
+        @ONLY
+)
+
 # Add json-c
 include(FetchContent)
 FetchContent_Declare(

@@ -24,7 +24,7 @@ typedef struct {
 } system_config_t;
 
 // Function declarations
-bool init_system_config(const char* json_path);
+bool init_system_config(void);
 void cleanup_system_config(void);
 const char** get_supported_systems(size_t* count);
 bool get_system_config(const char* system_type, system_config_t* config);

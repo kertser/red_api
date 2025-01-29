@@ -4,19 +4,23 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/app
+      - ./:/app
     working_dir: /app/build
     command: >
       bash -c "
+        rm -rf * &&
         cmake .. && 
         make &&
+        echo 'Build complete. Creating output directory...' &&
         mkdir -p /app/resources/temp &&
-        cp -L lib/libred_api.so.1.0 /app/resources/temp/ &&
-        cp -L _deps/json-c-build/libjson-c.so.5.3.0 /app/resources/temp/ &&
-        echo 'Copying required files...' &&
+        echo 'Copying library files...' &&
+        cp -v lib/libred_api.so.1.0 /app/resources/temp/ &&
+        cp -v _deps/json-c-build/libjson-c.so.5.3.0 /app/resources/temp/ &&
         cd /app/resources/temp &&
-        ln -sf libred_api.so.1.0 libred_api.so.1 &&
-        ln -sf libjson-c.so.5.3.0 libjson-c.so.5 &&
-        echo 'Contents of new build:' &&
-        ls -la
+        echo 'Creating symbolic links...' &&
+        ln -sfv libred_api.so.1.0 libred_api.so.1 &&
+        ln -sfv libjson-c.so.5.3.0 libjson-c.so.5 &&
+        echo 'Final contents of build:' &&
+        ls -la &&
+        echo 'Build process completed successfully.'
       "

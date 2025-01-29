@@ -24,7 +24,6 @@ Refer to explicit usage examples in `main.c` and `red_api.c` for practical imple
       ```
 3. **Library Path Configuration:**
     - Ensure the `libred_api.dll` is in the same directory as your executable or included in the system's library path.
-    - Ensure that `supported_systems.json` is in the same directory as your executable.
     - Ensure `libjson-c.dll` is in the same directory as your executable.
 
 ### Linux Setup
