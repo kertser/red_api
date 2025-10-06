@@ -164,3 +164,4 @@ APICalculator.exe
 libred_api.dll.a
 /cmake-build-debug/
 /build/
+/build/_deps/json-c-src/
