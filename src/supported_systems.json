@@ -70,7 +70,7 @@
     },
     "RZ163-11": {
       "lamp": {
-        "power": 2325,
+        "power": 1700,
         "count": 1
       },
       "pressure_drop": {
@@ -104,7 +104,7 @@
     },
     "RZ163-12": {
       "lamp": {
-        "power": 2325,
+        "power": 1700,
         "count": 2
       },
       "pressure_drop": {
@@ -138,7 +138,7 @@
     },
     "RZ163-13": {
       "lamp": {
-        "power": 2325,
+        "power": 1700,
         "count": 3
       },
       "pressure_drop": {
@@ -172,7 +172,7 @@
     },
     "RZ163-14": {
       "lamp": {
-        "power": 2325,
+        "power": 1700,
         "count": 4
       },
       "pressure_drop": {

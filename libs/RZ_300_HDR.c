@@ -1,14 +1,15 @@
 //
 // Created by kerts on 2/07/2024.
-// RZ-300-HDR RED calculation
+// RZ300 HDR RED calculation
 //
 
 #include <math.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "system_config.h"
 
-// RED for RZ-300 (HydraQual algorithm)
-double RED_RZ_300_HDR(double Flow, double UVT, double P[], double Eff[], double D1Log, uint32_t NLamps) {
+// RED for RZ300 (HydraQual algorithm)
+double RED_RZ_300_HDR(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
     // The function is for HDR validation model
 
     /*
@@ -24,17 +25,20 @@ double RED_RZ_300_HDR(double Flow, double UVT, double P[], double Eff[], double 
 
     bool legacy = false; // legacy RED function indicator
 
-    // Get system configuration
+    // Get system configuration - construct system name from NLamps
+    char system_name[20];
+    snprintf(system_name, sizeof(system_name), "RZ300-1%u", NLamps);
+
     system_config_t config;
-    if (!get_system_config("RZ-300-HDR", &config)) {
-        return -1; // Return error if configuration cannot be loaded
+    if (!get_system_config(system_name, &config)) {
+        return -1;
     }
 
     // pull the lamp power and efficiency values from the input arrays
     double P1 = P[0]; // assuming same power for all lamps
     double Eff1 = Eff[0]; // assuming same efficiency for all lamps
 
-    // Dose Coefficents:
+    // Dose Coefficients:
     const double a = 1.9723460342;
     const double b = 1.1342181946;
     const double c = -0.89447843101;

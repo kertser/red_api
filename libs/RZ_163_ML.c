@@ -1,6 +1,6 @@
 //
 // Created by kerts on 2/14/2024.
-// RZ-163-ML RED calculation
+// RZ163-ML RED calculation
 //
 
 #include <math.h>
@@ -10,9 +10,9 @@
 #include <stdio.h>
 #include <string.h>
 
-// RED for RZ-163-ML (legacy)
+// RED for RZ163-ML (legacy)
 double RED_RZ_163_ML(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
-    // Implementation for RZ-163-ML
+    // Implementation for RZ163-ML
 
     bool legacy = true; // legacy RED function
 
@@ -34,7 +34,7 @@ double RED_RZ_163_ML(double Flow, double UVT, double UVT215, double P[], double 
     } else {
         strcpy(NLampsText, "");
     }
-    snprintf(system_name, sizeof(system_name), "RZ-163-%s", NLampsText);
+    snprintf(system_name, sizeof(system_name), "RZ163-%s", NLampsText);
 
     system_config_t config;
     if (!get_system_config(system_name, &config)) {

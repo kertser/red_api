@@ -32,6 +32,7 @@ static void cleanup_resources(LIB_HANDLE handle, double *P, double *Eff) {
 }
 
 int main() {
+    // Example usage of the RED calculation library
     LIB_HANDLE handle = NULL;
     double *P = NULL;
     double *Eff = NULL;

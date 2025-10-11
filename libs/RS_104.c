@@ -5,12 +5,13 @@
 
 #include <math.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include "utils.h"
 #include "system_config.h"
 
-// RED for RS-104
+// RED for RS104
 double RED_RS_104(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
-    // Implementation for RS-104
+    // Implementation for RS104
 
     bool legacy = false; // legacy RED function
 
@@ -24,10 +25,13 @@ double RED_RS_104(double Flow, double UVT, double UVT215, double P[], double Eff
 
     // Dose Coefficients:
 
-    // Get system configuration
+    // Get system configuration - construct system name from NLamps
+    char system_name[20];
+    snprintf(system_name, sizeof(system_name), "RS104-1%u", NLamps);
+
     system_config_t config;
-    if (!get_system_config("RS-104", &config)) {
-        return -1; // Return error if configuration cannot be loaded
+    if (!get_system_config(system_name, &config)) {
+        return -1;
     }
 
     // General Coefficients from configuration

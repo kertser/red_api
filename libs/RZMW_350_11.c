@@ -1,6 +1,6 @@
 //
 // Created by kerts on 7/8/2024.
-// RZMW-350-11 RED calculation
+// RZMW350-11 RED calculation
 //
 
 #include <math.h>
@@ -10,7 +10,7 @@
 #include "system_config.h"
 #include <string.h>
 
-// RED for RZMW-350_11 Single Module
+// RED for RZMW350_11 Single Module
 double RED_RZMW_350_11(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
     // Implementation for a single module of RZM-200-5
 
@@ -60,9 +60,9 @@ double RED_RZMW_350_11(double Flow, double UVT, double UVT215, double P[], doubl
 
     // Determine NLampsText based on NLamps
     if (NLamps == 11) {
-        strcpy(system_name, "RZMW-350-11");
+        strcpy(system_name, "RZMW350-11");
     } else if (NLamps == 7) {
-        strcpy(system_name, "RZMW-350-7");
+        strcpy(system_name, "RZMW350-7");
     } else {
         strcpy(system_name, "");
     }

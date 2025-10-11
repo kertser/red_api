@@ -9,9 +9,9 @@
 #include "system_config.h"
 #include <string.h>
 
-// RED for RZM-200_5 Single Module
+// RED for RZM200_5 Single Module
 double RED_RZM_200_5(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
-    // Implementation for a single module of RZM-200-5
+    // Implementation for a single module of RZM200-5
 
     /*
     General Formula:
@@ -54,11 +54,11 @@ double RED_RZM_200_5(double Flow, double UVT, double UVT215, double P[], double 
 
     // Determine NLampsText based on NLamps
     if (NLamps == 5) {
-        strcpy(system_name, "RZM-200-5");
+        strcpy(system_name, "RZM200-5");
     } else if (NLamps == 3) {
-        strcpy(system_name, "RZM-200-3");
+        strcpy(system_name, "RZM200-3");
     } else if (NLamps == 2) {
-        strcpy(system_name, "RZM-200-2");
+        strcpy(system_name, "RZM200-2");
     } else {
         strcpy(system_name, "");
     }

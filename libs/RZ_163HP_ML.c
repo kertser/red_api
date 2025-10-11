@@ -1,6 +1,6 @@
 //
 // Created by kerts on 2/14/2024.
-// RZ-163-ML RED calculation
+// RZ163-ML RED calculation
 //
 
 #include <math.h>
@@ -8,9 +8,9 @@
 #include "utils.h"
 #include "system_config.h"
 
-// RED for RZ-163HP-ML (legacy)
+// RED for RZ163HP-ML (legacy)
 double RED_RZ_163HP_ML(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
-    // Implementation for RZ-163-ML
+    // Implementation for RZ163-ML
 
     bool legacy = true; // legacy RED function
 
@@ -20,7 +20,7 @@ double RED_RZ_163HP_ML(double Flow, double UVT, double UVT215, double P[], doubl
 
     // Get system configuration
     system_config_t config;
-    if (!get_system_config("RZ-163HP", &config)) {
+    if (!get_system_config("RZ163HP", &config)) {
         return -1; // Return error if configuration cannot be loaded
     }
 

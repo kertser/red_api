@@ -1,6 +1,6 @@
 //
 // Created by kerts on 7/3/2024.
-// RZM-350-8 RED calculation
+// RZM350-8 RED calculation
 //
 
 #include <math.h>
@@ -24,9 +24,9 @@ Schematic lamp placement:
 """
 */
 
-// RED for RZM-350-8 Single Module
+// RED for RZM350-8 Single Module
 double RED_RZM_350_8(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
-    // Implementation for a single module of RZM-350-8 (Regular System)
+    // Implementation for a single module of RZM350-8 (Regular System)
     // Flow in [m3/hour]
     // UVT in [%-1cm]
     // UVT215 in [%-1cm]
@@ -80,9 +80,9 @@ double RED_RZM_350_8(double Flow, double UVT, double UVT215, double P[], double 
 
     // Determine NLampsText based on NLamps
     if (NLamps == 8) {
-        strcpy(system_name, "RZM-350-8");
+        strcpy(system_name, "RZM350-8");
     } else if (NLamps == 5) {
-        strcpy(system_name, "RZM-350-5");
+        strcpy(system_name, "RZM350-5");
     } else {
         strcpy(system_name, "");
     }

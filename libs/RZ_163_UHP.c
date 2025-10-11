@@ -1,6 +1,6 @@
 //
 // Created by kerts on 2/14/2024.
-// RZ-163-UHP RED calculation
+// RZ163-UHP RED calculation
 //
 
 #include <math.h>
@@ -10,9 +10,9 @@
 #include <stdio.h>
 #include <string.h>
 
-// RED for RZ-163-UHP (new implementation)
+// RED for RZ163-UHP (new implementation)
 double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
-    // Implementation for RZ-163-UHP (new implementation)
+    // Implementation for RZ163-UHP (new implementation)
     // This is an updated version for UHP with fixed UVT254>96[%-1cm]
     // This implementation can take 254nm and 215nm UVT
     //if there is no data about UVT215, -1 value shall be delivered
@@ -80,7 +80,7 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P[], dou
     } else {
         strcpy(NLampsText, "");
     }
-    snprintf(system_name, sizeof(system_name), "RZ-163UHP-%s", NLampsText);
+    snprintf(system_name, sizeof(system_name), "RZ163UHP-%s", NLampsText);
 
     // Get system configuration
     system_config_t config;
@@ -144,7 +144,7 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P[], dou
 
 }
 
-// VF RED for RZ-163-UHP
+// VF RED for RZ163-UHP
 double VF_RED(double RED){
     // fixed BRED, bias at 3-log, conservative
 

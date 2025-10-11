@@ -1,6 +1,6 @@
 //
 // Created by kerts on 1/24/2024.
-// RZ-104-11 RED calculation
+// RZ104-11 RED calculation
 //
 
 #include <math.h>
@@ -8,9 +8,9 @@
 #include "utils.h"
 #include "system_config.h"
 
-// RED for RZ-104-11 (legacy)
+// RED for RZ104-11 (legacy)
 double RED_RZ_104_11(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
-    // Implementation for RZ-104-11
+    // Implementation for RZ104-11
 
     bool legacy = true; // legacy RED function
 
@@ -20,7 +20,7 @@ double RED_RZ_104_11(double Flow, double UVT, double UVT215, double P[], double 
 
     // Get system configuration
     system_config_t config;
-    if (!get_system_config("RZ-104-11", &config)) {
+    if (!get_system_config("RZ104-11", &config)) {
         return -1; // Return error if configuration cannot be loaded
     }
 

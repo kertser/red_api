@@ -1,6 +1,6 @@
 //
 // Created by kerts on 2/14/2024.
-// RZ-163-11 RED calculation
+// RZ163-11 RED calculation
 //
 
 #include <math.h>
@@ -8,9 +8,9 @@
 #include "utils.h"
 #include "system_config.h"
 
-// RED for RZ-163-1L (legacy)
+// RED for RZ163-1L (legacy)
 double RED_RZ_163_1L(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
-    // Implementation for RZ-163-1L
+    // Implementation for RZ163-1L
 
     // pull the lamp power and efficiency values from the input arrays
     double P1 = P[0];
@@ -20,7 +20,7 @@ double RED_RZ_163_1L(double Flow, double UVT, double UVT215, double P[], double 
 
     // Get system configuration
     system_config_t config;
-    if (!get_system_config("RZ-163-11", &config)) {
+    if (!get_system_config("RZ163-11", &config)) {
         return -1; // Return error if configuration cannot be loaded
     }
 

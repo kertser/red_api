@@ -85,7 +85,7 @@ Set `NLamps` to 0 if you wish to initialize the number of lamps automatically.
 ```c
 #include "system_config.h"
 
-char systemType[] = "RZM-350-8";
+char systemType[] = "RZM350-8";
 uint32_t NLamps = getNLamps(systemType);
 double Flow = 100;  // [m³/h]
 double UVT = 95;    // [% -1cm]
@@ -117,7 +117,7 @@ public class RedApi {
     public static void main(String[] args) {
         RedApi api = new RedApi();
 
-        String systemType = "RZM-350-8";
+        String systemType = "RZM350-8";
         double flow = 100.0; // [m³/h]
         double uvt = 95.0;   // [% -1cm]
         double uvt215 = -1.0; // [% -1cm] or -1 if NaN
@@ -182,28 +182,33 @@ bool validate_parameters(const char* system_type, double flow, double uvt, doubl
 
 The following systems are supported (refer to `supported_systems.json` for operational limits):
 
-- RZ-104-11
-- RZ-104-12
-- RZ-163-11
-- RZ-163-12
-- RZ-163-13
-- RZ-163-14
-- RZ-163HP-11
-- RZ-163HP-12
-- RZ-163HP-13
-- RZ-163HP-14
-- RZ-163UHP-11
-- RZ-163UHP-12
-- RZ-163UHP-13
-- RZ-163UHP-14
-- RZ-300-HDR
-- RS-104
-- RZB-300
-- RZM-350-8
-- RZM-350-5
-- RZM-200-5
-- RZM-200-3
-- RZM-200-2
+- RZ104-11
+- RZ104-12
+- RZ163-11
+- RZ163-12
+- RZ163-13
+- RZ163-14
+- RZ163HP-11
+- RZ163HP-12
+- RZ163HP-13
+- RZ163HP-14
+- RZ163UHP-11
+- RZ163UHP-12
+- R-163UHP-13
+- RZ163UHP-14
+- RZ300-11
+- RZ300-12
+- RZ300-13
+- RZ300-14
+- RS104-11
+- RS104-12
+- RZB300-11
+- RZB300-12
+- RZM350-8
+- RZM350-5
+- RZM200-5
+- RZM200-3
+- RZM200-2
 - RZMW-350-11
 - RZMW-350-7
 

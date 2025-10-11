@@ -17,8 +17,8 @@
 #include "RZ_300_HDR.h"
 #include "RS_104.h"
 #include "RZB_300.h"
-#include "RZM_350_8.h" // same is used for RZM-350-5
-#include "RZM_200_5.h" // same is used for RZM-200-3 and RZM-200-2
-#include "RZMW_350_11.h" // same is used for RZMW-350-7
+#include "RZM_350_8.h" // same is used for RZM350-5
+#include "RZM_200_5.h" // same is used for RZM200-3 and RZM200-2
+#include "RZMW_350_11.h" // same is used for RZMW350-7
 
 #endif //APICALCULATOR_SYSTEMS_HEADER_H

@@ -1,6 +1,6 @@
 //
 // Created by kerts on 2/14/2024.
-// RZB-300 RED calculation
+// RZB300 RED calculation
 //
 
 #include <math.h>
@@ -8,7 +8,7 @@
 #include "utils.h"
 #include "system_config.h"
 
-// RED for RZB-300 Single Module
+// RED for RZB300 Single Module
 double RED_RZB_300(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps) {
     // Implementation for a single module of RZB
 
@@ -49,7 +49,7 @@ double RED_RZB_300(double Flow, double UVT, double UVT215, double P[], double Ef
 
     // Get system configuration
     system_config_t config;
-    if (!get_system_config("RZB-300", &config)) {
+    if (!get_system_config("RZB300", &config)) {
         return -1; // Return error if configuration cannot be loaded
     }
 
