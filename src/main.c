@@ -56,7 +56,7 @@ int main() {
     }
 
     // Get system configuration
-    const char *systemType = "RZMW-350-11";
+    const char *systemType = "RZMW350-11";
     system_config_t config;
     if (!get_system_config(systemType, &config)) {
         fprintf(stderr, "Failed to get configuration for system %s\n", systemType);
@@ -77,7 +77,7 @@ int main() {
     const double UVT = 95.0;          // [%-1cm]
     const double UVT215 = -1.0;       // [%-1cm] or -1 if NaN
     const double Power = 100.0;       // [%]
-    const double Efficiency = 80.0;    // [%]
+    const double Efficiency = 80.0;   // [%]
     const double D1Log = 18.0;        // [mJ/cm²]
 
     // Validate parameters
