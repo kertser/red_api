@@ -112,6 +112,9 @@ bool get_system_config(const char* system_type, system_config_t* config) {
             if (json_object_object_get_ex(flow_obj, "min", &temp)) {
                 config->min_flow = json_object_get_double(temp);
             }
+            if (json_object_object_get_ex(flow_obj, "vertical_min", &temp)) {
+                config->vertical_min_flow = json_object_get_double(temp);
+            }
             if (json_object_object_get_ex(flow_obj, "max", &temp)) {
                 config->max_flow = json_object_get_double(temp);
             }
@@ -178,7 +181,7 @@ double get_lamp_power(const char* system_type) {
 }
 
 bool validate_parameters(const char* system_type, double flow, double uvt,
-                         double power, double efficiency) {
+                         double power, double efficiency, bool is_vertical) {
     system_config_t config;
     if (!get_system_config(system_type, &config)) {
         return false;
@@ -186,7 +189,11 @@ bool validate_parameters(const char* system_type, double flow, double uvt,
 
     // Check if flow limits exist and validate
     if (config.min_flow > 0 && config.max_flow > 0) {
-        if (flow < config.min_flow || flow > config.max_flow) {
+        double effective_min_flow = is_vertical && config.vertical_min_flow > 0
+                                    ? config.vertical_min_flow
+                                    : config.min_flow;
+
+        if (flow < effective_min_flow || flow > config.max_flow) {
             return false;
         }
     }
@@ -204,7 +211,6 @@ bool validate_parameters(const char* system_type, double flow, double uvt,
             return false;
         }
     } else {
-        // Standard power validation if no specific limits
         if (power < 0.0 || power > 100.0) {
             return false;
         }
@@ -216,7 +222,6 @@ bool validate_parameters(const char* system_type, double flow, double uvt,
             return false;
         }
     } else {
-        // Standard efficiency validation if no specific limits
         if (efficiency < 0.0 || efficiency > 100.0) {
             return false;
         }

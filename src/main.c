@@ -80,9 +80,10 @@ int main() {
     const double Power = 100.0;       // [%]
     const double Efficiency = 80.0;   // [%]
     const double D1Log = 18.0;        // [mJ/cm²]
+    const bool is_vertical = false;   // Assume horizontal system for this example
 
     // Validate parameters
-    if (!validate_parameters(systemType, Flow, UVT, Power, Efficiency)) {
+    if (!validate_parameters(systemType, Flow, UVT, Power, Efficiency, is_vertical)) {
         fprintf(stderr, "Parameters out of valid range for system %s\n", systemType);
         cleanup_resources(handle, NULL, NULL);
         return 1;

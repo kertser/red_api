@@ -18,8 +18,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 1,
-          "max": 1000,
+          "min": 10,
+          "vertical_min": 1.5,
+          "max": 140,
           "unit": "m³/h"
         },
         "uvt": {
@@ -52,8 +53,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 1,
-          "max": 1000,
+          "min": 10,
+          "vertical_min": 1.5,
+          "max": 140,
           "unit": "m³/h"
         },
         "uvt": {
@@ -86,8 +88,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 4,
-          "max": 2000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -120,8 +123,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 4,
-          "max": 2000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -154,8 +158,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 4,
-          "max": 2000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -188,8 +193,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 4,
-          "max": 2000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -222,8 +228,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 4,
-          "max": 2000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -256,8 +263,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 4,
-          "max": 2000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -290,8 +298,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 4,
-          "max": 2000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -324,8 +333,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 4,
-          "max": 2000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -358,8 +368,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 10,
-          "max": 3000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -392,8 +403,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 10,
-          "max": 3000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -426,8 +438,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 10,
-          "max": 3000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -460,8 +473,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 10,
-          "max": 3000,
+          "min": 30,
+          "vertical_min": 6,
+          "max": 360,
           "unit": "m³/h"
         },
         "uvt": {
@@ -494,8 +508,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 30,
-          "max": 500,
+          "min": 150,
+          "vertical_min": 30,
+          "max": 2200,
           "unit": "m³/h"
         },
         "uvt": {
@@ -528,8 +543,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 30,
-          "max": 500,
+          "min": 150,
+          "vertical_min": 30,
+          "max": 2200,
           "unit": "m³/h"
         },
         "uvt": {
@@ -562,8 +578,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 30,
-          "max": 500,
+          "min": 150,
+          "vertical_min": 30,
+          "max": 2200,
           "unit": "m³/h"
         },
         "uvt": {
@@ -596,8 +613,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 30,
-          "max": 500,
+          "min": 150,
+          "vertical_min": 30,
+          "max": 2200,
           "unit": "m³/h"
         },
         "uvt": {
@@ -630,8 +648,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 50,
-          "max": 100,
+          "min": 10,
+          "vertical_min": 1.5,
+          "max": 140,
           "unit": "m³/h"
         },
         "uvt": {
@@ -664,8 +683,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 50,
-          "max": 100,
+          "min": 10,
+          "vertical_min": 1.5,
+          "max": 140,
           "unit": "m³/h"
         },
         "uvt": {
@@ -698,7 +718,8 @@
           "unit": "%"
         },
         "flow": {
-          "min": 5,
+          "min": 150,
+          "vertical_min": 50,
           "max": 1000,
           "unit": "m³/h"
         },
@@ -732,7 +753,78 @@
           "unit": "%"
         },
         "flow": {
-          "min": 5,
+          "min": 150,
+          "vertical_min": 50,
+          "max": 1000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 20,
+          "max": 99,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 30,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZB300-13": {
+      "lamp": {
+        "power": 4200,
+        "count": 6
+      },
+      "pressure_drop": {
+        "Cflow_1": 2.22E-4,
+        "Cflow_2": 0,
+        "unit": "[cmH2O]"
+      },
+      "Type": "Standard",
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 150,
+          "vertical_min": 50,
+          "max": 1000,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 20,
+          "max": 99,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 30,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZB300-14": {
+      "lamp": {
+        "power": 4200,
+        "count": 8
+      },
+      "pressure_drop": {
+        "Cflow_1": 2.22E-4,
+        "Cflow_2": 0,
+        "unit": "[cmH2O]"
+      },
+      "Type": "Standard",
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 150,
+          "vertical_min": 50,
           "max": 1000,
           "unit": "m³/h"
         },
@@ -766,8 +858,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 50,
-          "max": 1000,
+          "min": 100,
+          "vertical_min": 100,
+          "max",: 1150,
           "unit": "m³/h"
         },
         "uvt": {
@@ -800,8 +893,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 50,
-          "max": 1000,
+          "min": 100,
+          "vertical_min": 100,
+          "max": 1150,
           "unit": "m³/h"
         },
         "uvt": {
@@ -834,8 +928,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 10,
-          "max": 4000,
+          "min": 20,
+          "vertical_min": 20,
+          "max": 500,
           "unit": "m³/h"
         },
         "uvt": {
@@ -868,8 +963,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 10,
-          "max": 4000,
+          "min": 20,
+          "vertical_min": 20,
+          "max": 500,
           "unit": "m³/h"
         },
         "uvt": {
@@ -902,8 +998,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 10,
-          "max": 4000,
+          "min": 20,
+          "vertical_min": 20,
+          "max": 500,
           "unit": "m³/h"
         },
         "uvt": {
@@ -936,8 +1033,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 10,
-          "max": 4000,
+          "min": 100,
+          "vertical_min": 100,
+          "max": 1150,
           "unit": "m³/h"
         },
         "uvt": {
@@ -970,8 +1068,9 @@
           "unit": "%"
         },
         "flow": {
-          "min": 10,
-          "max": 4000,
+          "min": 100,
+          "vertical_min": 100,
+          "max": 1150,
           "unit": "m³/h"
         },
         "uvt": {

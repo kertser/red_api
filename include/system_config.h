@@ -11,6 +11,7 @@ typedef struct {
     double lamp_power;
     // Flow limits
     double min_flow;
+    double vertical_min_flow;
     double max_flow;
     // UVT limits
     double min_uvt;
@@ -31,6 +32,6 @@ bool get_system_config(const char* system_type, system_config_t* config);
 uint32_t get_lamp_count(const char* system_type);
 double get_lamp_power(const char* system_type);
 bool validate_parameters(const char* system_type, double flow, double uvt,
-                         double power, double efficiency);
+                        double power, double efficiency, bool is_vertical);
 
 #endif // SYSTEM_CONFIG_H

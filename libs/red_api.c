@@ -41,6 +41,8 @@ REDFunction getREDFunction(char *systemType) {
     else if (strcmp(systemType, "RS104-12") == 0) return RED_RS_104;
     else if (strcmp(systemType, "RZB300-11") == 0) return RED_RZB_300; // 2 lamps in single module
     else if (strcmp(systemType, "RZB300-12") == 0) return RED_RZB_300; // 4 lamps - 2 modules
+    else if (strcmp(systemType, "RZB300-13") == 0) return RED_RZB_300; // 6 lamps - 3 modules
+    else if (strcmp(systemType, "RZB300-14") == 0) return RED_RZB_300; // 8 lamps - 4 modules
     else if (strcmp(systemType, "RZM350-8") == 0) return RED_RZM_350_8;
     else if (strcmp(systemType, "RZM350-5") == 0) return RED_RZM_350_8; // Same as 8 lamps, but 5
     else if (strcmp(systemType, "RZM200-5") == 0) return RED_RZM_200_5;
