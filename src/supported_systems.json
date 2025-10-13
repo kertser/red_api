@@ -860,7 +860,7 @@
         "flow": {
           "min": 100,
           "vertical_min": 100,
-          "max",: 1150,
+          "max": 1150,
           "unit": "m³/h"
         },
         "uvt": {
