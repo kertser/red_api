@@ -5,6 +5,8 @@
 
 #include <math.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <string.h>
 #include "utils.h"
 #include "system_config.h"
 
@@ -36,7 +38,7 @@ double RED_RZB_300(double Flow, double UVT, double UVT215, double P[], double Ef
     const double C1 = 0.11643116418818;
     const double D1 = 1.89455003428108;
 
-    // for lampd different power, when they are running at different drive (unused in general case)
+    // for lamp different power, when they are running at different drive (unused in general case)
     const double Z2 = 0.395152724682959;
     const double alfa1L = 1;
     const double beta1L = 1;
@@ -47,9 +49,23 @@ double RED_RZB_300(double Flow, double UVT, double UVT215, double P[], double Ef
     const double C2 = 0.369722425245504;
     const double D2 = 5.91491910054795;
 
-    // Get system configuration
+    // Get system configuration - construct system name from NLamps
+    char system_name[20];
+
+    if (NLamps == 2) {
+        snprintf(system_name, sizeof(system_name), "RZB300-11");
+    } else if (NLamps == 4) {
+        snprintf(system_name, sizeof(system_name), "RZB300-12");
+    } else if (NLamps == 6) {
+        snprintf(system_name, sizeof(system_name), "RZB300-13");
+    } else if (NLamps == 8) {
+        snprintf(system_name, sizeof(system_name), "RZB300-14");
+    } else {
+        return -1; // Invalid number of lamps
+    }
+
     system_config_t config;
-    if (!get_system_config("RZB300", &config)) {
+    if (!get_system_config(system_name, &config)) {
         return -1; // Return error if configuration cannot be loaded
     }
 

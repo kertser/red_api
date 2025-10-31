@@ -78,3 +78,4 @@ double RED_RZ_300_HDR(double Flow, double UVT, double UVT215, double P[], double
                 D1Log , e) * pow(10 , (f / (-log10(UVT / 100)))) * pow(NLamps , g);
     return RED;
 }
+

@@ -71,14 +71,16 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P[], dou
     char system_name[20]; // Buffer for final concatenated string
 
     // Determine NLampsText based on NLamps
-    if (NLamps == 2) {
+    if (NLamps == 1) {
+        strcpy(NLampsText, "11");
+    } else if (NLamps == 2) {
         strcpy(NLampsText, "12");
     } else if (NLamps == 3) {
         strcpy(NLampsText, "13");
     } else if (NLamps == 4) {
         strcpy(NLampsText, "14");
     } else {
-        strcpy(NLampsText, "");
+        return -1;  // Invalid lamp count
     }
     snprintf(system_name, sizeof(system_name), "RZ163UHP-%s", NLampsText);
 
@@ -103,10 +105,20 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P[], dou
     const double UVT215_A = 0.2804;
     const double UVT215_B = 0.0609;
     // reinitialize the UVT215 by approximate values if unknown
+
     if (UVT215 == -1) UVT215 = round_1(UVT215_A * exp(UVT215_B * UVT254));
 
     double A254 = -log10(UVT254/100);
     double A215 = -log10(UVT215/100);
+
+    // Validation before calculation
+    if (UVT254 < minUVT || UVT254 > maxUVT ||
+        P1 < minDrive || P1 > maxDrive ||
+        Flow < minFlow || Flow > maxFlow ||
+        Eff1 < minEff || Eff1 > maxEff) {
+        return -1; // Return error if parameters are out of range
+        }
+
     Flow = Flow*4.402868; // in this specific case it is a conversion to gpm
 
     double RED; // just declaration
@@ -130,14 +142,6 @@ double RED_RZ_163_UHP(double Flow, double UVT254, double UVT215, double P[], dou
 
         double RED96 = (RED_HL96+RED_LL96); // might be rounded to 2 digits
         RED = RED96 * pow(1.3,(UVT254-96));
-    }
-
-    // Validation before calculation
-    if (UVT254 < minUVT || UVT254 > maxUVT ||
-        P1 < minDrive || P1 > maxDrive ||
-        Flow < minFlow || Flow > maxFlow ||
-        Eff1 < minEff || Eff1 > maxEff) {
-        return -1; // Return error if parameters are out of range
     }
 
     return round_1(RED);
