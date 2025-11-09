@@ -166,3 +166,4 @@ libred_api.dll.a
 /build/
 /build/_deps/json-c-src/
 /cmake-build-default/
+/.idea/

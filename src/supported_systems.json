@@ -1084,6 +1084,76 @@
           "unit": "%"
         }
       }
+    },
+    "EP600-2": {
+      "lamp": {
+        "power": 12000,
+        "count": 2
+      },
+      "pressure_drop": {
+        "Cflow_1": 4.04118E-08,
+        "Cflow_2": 1.099E-05,
+        "unit": "[cmH2O]"
+      },
+      "Type": "Standard",
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 500,
+          "vertical_min": 100,
+          "max": 3500,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 25,
+          "max": 99,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 30,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "EP600-4": {
+      "lamp": {
+        "power": 12000,
+        "count": 4
+      },
+      "pressure_drop": {
+        "Cflow_1": 5.32862E-08,
+        "Cflow_2": 1.64637E-05,
+        "unit": "[cmH2O]"
+      },
+      "Type": "Standard",
+      "operational_limits": {
+        "drive": {
+          "min": 25,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 500,
+          "vertical_min": 100,
+          "max": 3500,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 25,
+          "max": 99,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 30,
+          "max": 100,
+          "unit": "%"
+        }
+      }
     }
   }
 }

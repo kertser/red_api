@@ -57,7 +57,7 @@ int main() {
     }
 
     // Get system configuration
-    const char *systemType = "RZ163UHP-11";
+    const char *systemType = "EP600-4";
     system_config_t config;
     if (!get_system_config(systemType, &config)) {
         fprintf(stderr, "Failed to get configuration for system %s\n", systemType);
@@ -74,9 +74,9 @@ int main() {
     }
 
     // Set operational parameters
-    const double Flow = 100.0;        // [m³/h]
+    const double Flow = 500.0;        // [m³/h]
     const double UVT = 95.0;          // [%-1cm]
-    const double UVT215 = 90;         // [%-1cm] or -1 if NaN
+    const double UVT215 = 95.0;       // [%-1cm] or -1 if NaN
     const double Power = 100.0;       // [%]
     const double Efficiency = 80.0;   // [%]
     const double D1Log = 18.0;        // [mJ/cm²]
