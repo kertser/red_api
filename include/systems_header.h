@@ -21,5 +21,6 @@
 #include "RZM_200_5.h" // same is used for RZM200-3 and RZM200-2
 #include "RZMW_350_11.h" // same is used for RZMW350-7
 #include "EP_600.h"
+#include "WW_11.h"
 
 #endif //APICALCULATOR_SYSTEMS_HEADER_H

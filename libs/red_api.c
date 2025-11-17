@@ -52,6 +52,18 @@ REDFunction getREDFunction(char *systemType) {
     else if (strcmp(systemType, "RZMW350-7") == 0) return RED_RZMW_350_11; // Same as 11 lamps, but 7
     else if (strcmp(systemType, "EP600-4") == 0) return RED_EP_600;
     else if (strcmp(systemType, "EP600-2") == 0) return RED_EP_600; // Same as 4 lamps, but 2
+    else if (strcmp(systemType, "WW11-1") == 0) return RED_WW_11; // 11 lamps, 1 bank
+    else if (strcmp(systemType, "WW11-2") == 0) return RED_WW_11; // 22 lamps, 2 banks
+    else if (strcmp(systemType, "WW11-3") == 0) return RED_WW_11; // 33 lamps, 3 banks
+    else if (strcmp(systemType, "WW11-4") == 0) return RED_WW_11; // 44 lamps, 4 banks
+    else if (strcmp(systemType, "WW11T1-1") == 0) return RED_WW_11_T1; // 11 lamps, 1 bank, T1 pathogen
+    else if (strcmp(systemType, "WW11T1-2") == 0) return RED_WW_11_T1; // 22 lamps, 2 banks, T1 pathogen
+    else if (strcmp(systemType, "WW11T1-3") == 0) return RED_WW_11_T1; // 33 lamps, 3 banks, T1 pathogen
+    else if (strcmp(systemType, "WW11T1-4") == 0) return RED_WW_11_T1; // 44 lamps, 4 banks, T1 pathogen
+    else if (strcmp(systemType, "WW11MS2-1") == 0) return RED_WW_11_MS2; // 11 lamps, 1 bank, MS2 pathogen
+    else if (strcmp(systemType, "WW11MS2-2") == 0) return RED_WW_11_MS2; // 22 lamps, 2 banks, MS2 pathogen
+    else if (strcmp(systemType, "WW11MS2-3") == 0) return RED_WW_11_MS2; // 33 lamps, 3 banks, MS2 pathogen
+    else if (strcmp(systemType, "WW11MS2-4") == 0) return RED_WW_11_MS2; // 44 lamps, 4 banks, MS2 pathogen
 
     return NULL;
 }

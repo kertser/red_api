@@ -1154,6 +1154,426 @@
           "unit": "%"
         }
       }
+    },
+    "WW11-1": {
+      "lamp": {
+        "power": 1000,
+        "count": 11
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000112,
+        "Cflow_2": 0.00019765,
+        "unit": "[cmH2O]"
+      },
+      "Type": "Standard",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11-2": {
+      "lamp": {
+        "power": 1000,
+        "count": 22
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000224,
+        "Cflow_2": 0.0003953,
+        "unit": "[cmH2O]"
+      },
+      "Type": "Standard",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11-3": {
+      "lamp": {
+        "power": 1000,
+        "count": 33
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000336,
+        "Cflow_2": 0.00059295,
+        "unit": "[cmH2O]"
+      },
+      "Type": "Standard",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11-4": {
+      "lamp": {
+        "power": 1000,
+        "count": 44
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000448,
+        "Cflow_2": 0.0007906,
+        "unit": "[cmH2O]"
+      },
+      "Type": "Standard",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11MS2-1": {
+      "lamp": {
+        "power": 1000,
+        "count": 11
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000112,
+        "Cflow_2": 0.00019765,
+        "unit": "[cmH2O]"
+      },
+      "Type": "EPA",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11MS2-2": {
+      "lamp": {
+        "power": 1000,
+        "count": 22
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000224,
+        "Cflow_2": 0.0003953,
+        "unit": "[cmH2O]"
+      },
+      "Type": "EPA",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11MS2-3": {
+      "lamp": {
+        "power": 1000,
+        "count": 33
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000336,
+        "Cflow_2": 0.00059295,
+        "unit": "[cmH2O]"
+      },
+      "Type": "EPA",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11MS2-4": {
+      "lamp": {
+        "power": 1000,
+        "count": 44
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000448,
+        "Cflow_2": 0.0007906,
+        "unit": "[cmH2O]"
+      },
+      "Type": "EPA",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11T1-1": {
+      "lamp": {
+        "power": 1000,
+        "count": 11
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000112,
+        "Cflow_2": 0.00019765,
+        "unit": "[cmH2O]"
+      },
+      "Type": "EPA",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11T1-2": {
+      "lamp": {
+        "power": 1000,
+        "count": 22
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000224,
+        "Cflow_2": 0.0003953,
+        "unit": "[cmH2O]"
+      },
+      "Type": "EPA",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11T1-3": {
+      "lamp": {
+        "power": 1000,
+        "count": 33
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000336,
+        "Cflow_2": 0.00059295,
+        "unit": "[cmH2O]"
+      },
+      "Type": "EPA",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "WW11T1-4": {
+      "lamp": {
+        "power": 1000,
+        "count": 44
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.00000448,
+        "Cflow_2": 0.0007906,
+        "unit": "[cmH2O]"
+      },
+      "Type": "EPA",
+      "operational_limits": {
+        "drive": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 127,
+          "vertical_min": 127,
+          "max": 1771,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 44.8,
+          "max": 90.4,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
     }
   }
 }

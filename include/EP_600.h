@@ -5,7 +5,7 @@
 #ifndef APICALCULATOR_EP_600_H
 #define APICALCULATOR_EP_600_H
 
-// RED for RZ300 HDR systems
+// RED for EP600 systems
 double RED_EP_600(double Flow, double UVT, double UVT215, double P[], double Eff[], double D1Log, uint32_t NLamps);
 
 #endif //APICALCULATOR_EP_600_H
