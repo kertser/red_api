@@ -55,4 +55,7 @@ uint32_t getNLamps(char *systemType);
  * @return Number of lamps.
  */
 
+const char* getVersion(void);
+// Function to return the version of the library
+
 #endif // RED_API_H

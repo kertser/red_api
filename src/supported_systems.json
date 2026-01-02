@@ -6,7 +6,7 @@
         "count": 1
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 4.18E-03,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -41,7 +41,77 @@
         "count": 2
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 7.34E-03,
+        "Cflow_2": 0,
+        "unit": "[cmH2O]"
+      },
+      "Type": "EPA",
+      "operational_limits": {
+        "drive": {
+          "min": 30,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 10,
+          "vertical_min": 1.5,
+          "max": 140,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ104-13": {
+      "lamp": {
+        "power": 1045,
+        "count": 3
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.013215571,
+        "Cflow_2": 0,
+        "unit": "[cmH2O]"
+      },
+      "Type": "EPA",
+      "operational_limits": {
+        "drive": {
+          "min": 30,
+          "max": 100,
+          "unit": "%"
+        },
+        "flow": {
+          "min": 10,
+          "vertical_min": 1.5,
+          "max": 140,
+          "unit": "m³/h"
+        },
+        "uvt": {
+          "min": 79,
+          "max": 96.6,
+          "unit": "%-1cm"
+        },
+        "efficiency": {
+          "min": 50,
+          "max": 100,
+          "unit": "%"
+        }
+      }
+    },
+    "RZ104-14": {
+      "lamp": {
+        "power": 1045,
+        "count": 4
+      },
+      "pressure_drop": {
+        "Cflow_1": 0.023788028,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -76,7 +146,7 @@
         "count": 1
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 2.61E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -111,7 +181,7 @@
         "count": 2
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 5.31E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -146,7 +216,7 @@
         "count": 3
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 7.35E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -181,7 +251,7 @@
         "count": 4
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 9.14E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -216,7 +286,7 @@
         "count": 1
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 2.61E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -251,7 +321,7 @@
         "count": 2
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 5.31E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -286,7 +356,7 @@
         "count": 3
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 7.35E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -321,7 +391,7 @@
         "count": 4
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 9.14E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -356,7 +426,7 @@
         "count": 1
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 2.61E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -391,7 +461,7 @@
         "count": 2
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 5.31E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -426,7 +496,7 @@
         "count": 3
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 7.35E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -461,7 +531,7 @@
         "count": 4
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 9.14E-04,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -496,7 +566,7 @@
         "count": 1
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 1.53E-05,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -531,7 +601,7 @@
         "count": 2
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 2.75E-05,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -566,7 +636,7 @@
         "count": 3
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 3.77E-05,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -601,7 +671,7 @@
         "count": 4
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 4.69E-05,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -636,7 +706,7 @@
         "count": 1
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 4.18E-03,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -671,7 +741,7 @@
         "count": 2
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
+        "Cflow_1": 7.34E-03,
         "Cflow_2": 0,
         "unit": "[cmH2O]"
       },
@@ -706,8 +776,8 @@
         "count": 2
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 2.00E-03,
+        "Cflow_2": 0.2,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -741,8 +811,8 @@
         "count": 4
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 4.00E-03,
+        "Cflow_2": 0.4,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -776,8 +846,8 @@
         "count": 6
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 6.00E-03,
+        "Cflow_2": 0.6,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -811,8 +881,8 @@
         "count": 8
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 8.00E-03,
+        "Cflow_2": 0.8,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -846,8 +916,8 @@
         "count": 8
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 0.0001312,
+        "Cflow_2": 0.0125,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -881,8 +951,8 @@
         "count": 5
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 0.0001312,
+        "Cflow_2": 0.0125,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -916,8 +986,8 @@
         "count": 5
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 1.12668E-06,
+        "Cflow_2": 2.07695E-05,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -951,8 +1021,8 @@
         "count": 3
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 1.12668E-06,
+        "Cflow_2": 2.07695E-05,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -986,8 +1056,8 @@
         "count": 2
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 1.12668E-06,
+        "Cflow_2": 2.07695E-05,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -1021,8 +1091,8 @@
         "count": 11
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 0.0001322,
+        "Cflow_2": 0.01818,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -1056,8 +1126,8 @@
         "count": 7
       },
       "pressure_drop": {
-        "Cflow_1": 2.22E-4,
-        "Cflow_2": 0,
+        "Cflow_1": 0.0001322,
+        "Cflow_2": 0.01818,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -1091,8 +1161,8 @@
         "count": 2
       },
       "pressure_drop": {
-        "Cflow_1": 4.04118E-08,
-        "Cflow_2": 1.099E-05,
+        "Cflow_1": 0.00004,
+        "Cflow_2": 0.004,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",
@@ -1126,8 +1196,8 @@
         "count": 4
       },
       "pressure_drop": {
-        "Cflow_1": 5.32862E-08,
-        "Cflow_2": 1.64637E-05,
+        "Cflow_1": 0.00005,
+        "Cflow_2": 0.02,
         "unit": "[cmH2O]"
       },
       "Type": "Standard",

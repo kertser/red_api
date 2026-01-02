@@ -73,3 +73,8 @@ uint32_t getNLamps(char *systemType) {
     // Get lamp count from JSON configuration
     return get_lamp_count(systemType);
 }
+
+// Function to return the version of the library
+const char* getVersion(void) {
+    return "1.0.0";
+}

@@ -22,6 +22,7 @@
 typedef double (*REDFunction)(double, double, double, double[], double[], double, uint32_t);
 typedef REDFunction (*GetREDFunctionType)(char *);
 typedef uint32_t (*GetNLampsType)(const char*);
+typedef const char* (*GetVersionType)(void);
 
 // Function to clean up resources
 static void cleanup_resources(LIB_HANDLE handle, double *P, double *Eff) {
@@ -54,6 +55,12 @@ int main() {
 #endif
         cleanup_system_config();
         return 1;
+    }
+
+    // Print library version
+    GetVersionType getVersion = (GetVersionType)GET_PROC_ADDRESS(handle, "getVersion");
+    if (getVersion) {
+        printf("RED API Library Version: %s\n\n", getVersion());
     }
 
     // Get system configuration
